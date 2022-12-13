@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  # app:
+  #   build: ./
+  #   container_name: "finance_service_app"
+  #   restart: unless-stopped
+  #   working_dir: /var/www
+  #   volumes:
+  #     - ./src:/var/www
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - finance_service
+
+  db:
+    image: mysql:8.0
+    container_name: "finance_service_db"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}   
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - ./docker/sql:/docker-entrypoint-initdb.d
+    networks:
+      - finance_service
+
+networks:
+  finance_service:
+    driver: bridge

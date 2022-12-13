@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CreditConfig{
+  id Int @id @default(autoincrement())
+  user_id Int @db.Int
+  description String @db.VarChar(255)
+  limit_credit Float @db.Float
+  day_due String @db.VarChar(255)
+  credit_closing String @db.VarChar(2)
+}
+
+model Credit {
+  id Int @id @default(autoincrement())
+  user_id Int @db.Int
+  category Category @relation(fields: [category_id], references: [id])
+  category_id Int @db.Int
+  description String @db.VarChar(255)
+  installment_value Float @db.Float
+  dt_due String @db.VarChar(255)
+  credit_status String @db.VarChar(255)
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  user_id Int @db.Int
+  description String @db.VarChar(255) 
+  debit Debit[]
+  credit Credit[]
+}
+
+model Debit{
+  id_cd Int @id @default(autoincrement())
+  user_id Int @db.Int
+  category Category @relation(fields: [category_id], references: [id])
+  category_id Int @db.Int
+  description String @db.VarChar(255) 
+  value Float @db.Double
+  dt_purchase String @db.VarChar(255)
+  debit_type String @db.VarChar(255)
+}
