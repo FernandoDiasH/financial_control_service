@@ -4,10 +4,9 @@ import { createCategoryController, createCategoryUseCase } from '.'
 describe('Quando eu registar uma categoria nova', ()=>{
     it('que ela registre', ()=>{
 
-        createCategoryUseCase.execute({
-            user_id:1, 
-            descripiton:"teste" }
-        )
-        
+        // createCategoryUseCase.execute({
+        //     user_id:1, 
+        //     descripiton:"teste" }
+        // )
     })
 })

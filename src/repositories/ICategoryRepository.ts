@@ -2,6 +2,6 @@ import { Category } from "../entities/Category";
 
 
 export interface ICategoryRepository{
-    create(category:Category):Promise<void>
+    create(data:Category):Promise<Category>
     findById(id:number, user_id:number ):Promise<Category>
 }

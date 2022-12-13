@@ -1,8 +1,13 @@
 import { Category } from "../../entities/Category";
 import { ICategoryRepository } from "../../repositories/ICategoryRepository";
-import { CreateCategoryDTO } from "./CreateCategoryDTO";
 
+interface CreateCategoryRequest {
+    id?:number
+    user_id:number
+    description:string
+}
 
+type CreateCategoryResponse = Category
 
 export class CreateCategoryUseCase {
 
@@ -10,12 +15,10 @@ export class CreateCategoryUseCase {
         private categoryRepository:ICategoryRepository
     ){}
     
-    async execute (data:CreateCategoryDTO){  
+    async execute (data:CreateCategoryRequest): Promise<CreateCategoryResponse>   
         
         const category = new Category({
-            id:data.id,
-            user_id:data.user_id,
-            description:data.descripiton
+            id:
         })
 
         await this.categoryRepository.create(category)

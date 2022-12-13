@@ -5,13 +5,13 @@ import { ICategoryRepository } from "../ICategoryRepository";
 
 export class CategoryRepository implements ICategoryRepository
 {
-    async create(category: Category): Promise<void> {
+    async create(category: Category): Promise<Category> {
        
-        await prisma.category.create({
+        return await prisma.category.create({
             data:{
-                id: category.id,
-                user_id:category.user_id,
-                description:category.description
+                id: category.props.id,
+                user_id:category.props.user_id,
+                description:category.props.description
             }
         })
     }
