@@ -8,9 +8,9 @@ export class CreateCategoryController
     ){}
 
     async handle(req:Request, res:Response){
-        const {id, user_id, descripiton} = req.body
+        const {id, user_id, description } = req.body
 
-        await this.createCategoryUseCase.execute({id, user_id, descripiton})
+        await this.createCategoryUseCase.execute({id, user_id, description})
 
     }
 }
