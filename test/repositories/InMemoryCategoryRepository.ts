@@ -1,5 +1,4 @@
 import { Category } from "../../src/app/entities/Category";
-import { prisma } from "../../src/infra/database/prisma/prisma";
 import { ICategoryRepository } from "../../src/app/repositories/ICategoryRepository";
 
 

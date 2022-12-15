@@ -9,7 +9,7 @@ interface CreateCategoryRequest {
 
 type CreateCategoryResponse = Category
 
-export class CreateCategoryUseCase {
+export class CreateCategory {
 
     constructor(
         private categoryRepository:ICategoryRepository

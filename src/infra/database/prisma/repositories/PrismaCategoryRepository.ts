@@ -1,16 +1,15 @@
 import { Category } from "../../../../app/entities/Category";
 import { ICategoryRepository } from "../../../../app/repositories/ICategoryRepository";
+import { PrismaCategoryMapper } from "../mappers/prisma-category-mapper";
 import { prisma } from "../prisma";
 
 
 export class PrismaCategoryRepository implements ICategoryRepository{
-    async create(data: Category): Promise<void> {
+    async create(categoty: Category): Promise<void> {
+        const raw = PrismaCategoryMapper.toPrisma(categoty)
+
         await prisma.category.create({
-            data:{
-                id:data._id,
-                user_id:data._user_id,
-                description:data._descripiton
-            }
+            data: raw
         }) 
     }
 

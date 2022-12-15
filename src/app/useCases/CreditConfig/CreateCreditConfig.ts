@@ -14,7 +14,7 @@ type CreateCreditConfigResponse = CreditConfig
 
 
 
-export class CreateCreditConfigUseCase {
+export class CreateCreditConfig {
 
     constructor(
         private creditConfigRepositry: ICreditConfiRepository

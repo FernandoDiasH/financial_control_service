@@ -2,14 +2,14 @@ import { randomUUID } from "crypto";
 import { describe, expect, it } from "vitest";
 import { InMemoryCreditConfigRepository } from "../../../../test/repositories/InMemoryCreditConfigRepository";
 import { CreditConfig } from "../../entities/CreditConfig";
-import { CreateCreditConfigUseCase } from "./CreateCreditConfigUseCase";
+import { CreateCreditConfig } from "./CreateCreditConfig";
 
 
 describe('Credit Config', ()=>{
     it('deveria poder criar um configuracao de credito', async ()=>{
 
         const creditConfigReposytpory = new InMemoryCreditConfigRepository()
-        const createCreditConfig = new CreateCreditConfigUseCase(creditConfigReposytpory)
+        const createCreditConfig = new CreateCreditConfig(creditConfigReposytpory)
 
         const creeditConfig = await createCreditConfig.execute({
             id:randomUUID(),

@@ -51,7 +51,7 @@ export class CreditConfig{
         return this._day_due
     }
 
-    get credit_closing (){
+    get day_credit_closing (){
         return this._day_credit_closing
     }
 }
