@@ -5,12 +5,11 @@ import { randomUUID } from 'node:crypto'
 describe('Category', ()=>{
     it('deveria poder criar uma categoria', ()=>{
         const categoria = new Category({
-            id:'id_teste',
             user_id:'user_id_teste',
             description:'descricao teste'  
         })  
         expect(categoria).toBeInstanceOf(Category)
-        expect(categoria._id).toBeTypeOf('string')
+        expect(categoria.id).toBeTypeOf('string')
     })
 
     it('nao deveria criar uma categoria com id e user_id com numeros', ()=>{
@@ -29,14 +28,5 @@ describe('Category', ()=>{
             description:"teste"
         })  
         expect(categoria).toBeInstanceOf(Category)
-    })
-
-    it('nao deveria poder criar uma catergoria sem o user_id',()=>{
-        expect(()=>{
-            new Category({
-                id:randomUUID(),
-                description:"teste"
-            })
-        }).toThrow()
     })
 })

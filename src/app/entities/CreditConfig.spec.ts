@@ -6,7 +6,6 @@ describe('Credit Config', ()=>{
     it('deveria poder criar um instacia de CreditConfig', ()=>{
         expect(()=> 
             new CreditConfig({
-                id:randomUUID(),
                 user_id:randomUUID(),
                 description:"Configuracao do cartao",
                 limit_credit:2000,

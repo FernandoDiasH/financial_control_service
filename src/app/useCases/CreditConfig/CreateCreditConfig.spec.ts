@@ -12,7 +12,6 @@ describe('Credit Config', ()=>{
         const createCreditConfig = new CreateCreditConfig(creditConfigReposytpory)
 
         const creeditConfig = await createCreditConfig.execute({
-            id:randomUUID(),
             user_id:randomUUID(),
             day_due:"18",
             day_credit_closing:"11",
