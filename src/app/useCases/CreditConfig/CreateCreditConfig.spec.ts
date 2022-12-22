@@ -22,4 +22,5 @@ describe('Credit Config', ()=>{
         expect(creditConfigReposytpory.creditConfigs).toHaveLength(1)
         expect(creditConfigReposytpory.creditConfigs[0]).toEqual(creeditConfig)
     })
+
 })

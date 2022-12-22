@@ -3,10 +3,15 @@ import { ICreditConfiRepository } from "../../src/app/repositories/ICreditConfig
 
 export class InMemoryCreditConfigRepository implements ICreditConfiRepository
 {
+
     public creditConfigs:CreditConfig[] = []
 
     async create(data: CreditConfig): Promise<void> {
         this.creditConfigs.push(data) 
+    }
+
+    async findByID(creditID: string): Promise<CreditConfig> {
+        return this.creditConfigs.find(credit =>  credit.id == creditID )
     }
     
 }

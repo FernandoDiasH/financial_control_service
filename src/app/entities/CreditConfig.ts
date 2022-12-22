@@ -4,8 +4,8 @@ interface CreditConfigProps{
     user_id: string
     description: string
     limit_credit: number
-    day_due: string
-    day_credit_closing: string
+    day_due: number
+    day_credit_closing: number
 }
 
 export class CreditConfig{

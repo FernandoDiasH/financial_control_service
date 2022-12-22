@@ -11,7 +11,7 @@ export class InMemoryCategoryRepository implements ICategoryRepository
     }
     
     async findById(id: string, user_id: string): Promise<Category> {
-        const categoria = this.categories.find(categoria => categoria._id == id && categoria._user_id === user_id)
+        const categoria = this.categories.find(categoria => categoria.id == id && categoria._user_id === user_id)
 
         if(!categoria){
             throw new Error('Nenhuma categoria foi encontrada')

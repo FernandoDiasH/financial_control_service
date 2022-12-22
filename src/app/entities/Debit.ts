@@ -1,16 +1,21 @@
+import { randomUUID } from "node:crypto"
 
-interface IDebit{
-    id?:number
+interface DebitProps{
     user_id:string
     description:string
     value:number
-    category_id:number
+    category_id:string
     dt_purchase:string
     debit_type:string
 }
 
 export class Debit{
-    constructor(data:IDebit){
-        Object.assign(data, this)
+    private _id:string
+    private props: DebitProps
+
+    constructor(props:DebitProps, id?:string){
+        
+        this._id = id ?? randomUUID()
+        this.props = props
     }
 }
