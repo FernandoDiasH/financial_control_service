@@ -12,16 +12,6 @@ describe('Category', ()=>{
         expect(categoria.id).toBeTypeOf('string')
     })
 
-    it('nao deveria criar uma categoria com id e user_id com numeros', ()=>{
-        expect(()=>{
-            new Category({
-                id:23232,
-                user_id: 23232,
-                description:"teste"
-            })
-        }).toThrow()
-    })
-
     it('deveria poder criar uma catergoria sem o id',()=>{
         const categoria = new Category({
             user_id: randomUUID(),

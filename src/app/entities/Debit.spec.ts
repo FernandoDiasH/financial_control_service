@@ -15,7 +15,6 @@ describe('Debit',()=>{
             value:1223
         })
 
-        console.log(debit)
         expect(debit).toBeInstanceOf(Debit)
     })
 })

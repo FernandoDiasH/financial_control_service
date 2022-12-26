@@ -11,7 +11,13 @@ export class InMemoryCreditConfigRepository implements ICreditConfiRepository
     }
 
     async findByID(creditID: string): Promise<CreditConfig> {
-        return this.creditConfigs.find(credit =>  credit.id == creditID )
+        const creditConifg = this.creditConfigs.find(credit =>  credit.id == creditID )
+
+        if(!creditConifg){
+            throw new Error('Nenhuma configuracao de credito foi encontrada')
+        }
+
+        return creditConifg
     }
     
 }

@@ -10,7 +10,7 @@ describe('Credit',()=>{
             user_id:"usuario-teste",
             category_id:'categoria-teste',
             description:'compra tv',
-            dt_due:'2022-10-20',
+            dt_due: new Date(2022, 10, 20),
             installment_value:1111 
         })
 

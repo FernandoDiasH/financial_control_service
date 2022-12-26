@@ -3,8 +3,8 @@ import { ICreditConfiRepository } from "../../repositories/ICreditConfigReposito
 
 interface CreateCreditConfigRequest {
     user_id:string
-    day_credit_closing: string
-    day_due: string
+    day_credit_closing: number
+    day_due: number
     description: string,
     limit_credit:number
 }

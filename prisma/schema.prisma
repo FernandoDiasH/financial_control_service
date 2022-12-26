@@ -12,18 +12,18 @@ model CreditConfig {
   user_id        String @db.Text
   description    String @db.VarChar(255)
   limit_credit   Float  @db.Float
-  day_due        String @db.VarChar(2)
-  day_credit_closing String @db.VarChar(2)
+  day_due        Int @db.Int()
+  day_credit_closing Int @db.Int()
 }
 
 model Credit {
-  id                String   @id @default(uuid())
-  user_id           String   @db.Text
+  id                String     @id @default(uuid())
+  user_id           String     @db.Text
   category_id       String
-  description       String   @db.VarChar(255)
-  installment_value Float    @db.Float
-  dt_due            String   @db.VarChar(255)
-  credit_status     String   @db.VarChar(255)
+  description       String     @db.VarChar(255)
+  installment_value Float      @db.Float
+  dt_due            DateTime        @db.DateTime()
+  credit_status     DateTime?   @db.Timestamp()
   category          Category @relation(fields: [category_id], references: [id])
 
   @@index([category_id], map: "Credit_category_id_fkey")

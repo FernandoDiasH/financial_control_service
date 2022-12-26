@@ -29,16 +29,8 @@ export class CreateCredit
 
         for(let i = 0; i < request.parcelas; i++ ){
             
-            let date_due = data_compra
+            let date_due = this.calculateDateDue(data_compra, creditConfig.day_credit_closing, i )
            
-            if(data_compra.getDate() > creditConfig.day_credit_closing) {
-                date_due = addMonths(data_compra, i + 1)
-            }
-
-            if(data_compra.getDate() < creditConfig.day_credit_closing){
-                date_due = addMonths(data_compra, i)
-            }
-        
             const credit = new Credit({
                 user_id: request.user_id,
                 category_id:request.category_id,
@@ -51,4 +43,15 @@ export class CreateCredit
         }
     }
 
+    private calculateDateDue(date_purchase:Date, day_credit_closing:number, installments:number ):Date{
+        if(date_purchase.getDate() > day_credit_closing) {
+            return addMonths(date_purchase, installments + 1)
+        }
+
+        if(date_purchase.getDate() < day_credit_closing){
+            return  addMonths(date_purchase, installments)
+        }
+
+        throw new Error()
+    }
 }

@@ -13,8 +13,8 @@ describe('Credit Config', ()=>{
 
         const creeditConfig = await createCreditConfig.execute({
             user_id:randomUUID(),
-            day_due:"18",
-            day_credit_closing:"11",
+            day_due:18,
+            day_credit_closing:11,
             description:"configuracao de cartao de credito",
             limit_credit:1600,
         })

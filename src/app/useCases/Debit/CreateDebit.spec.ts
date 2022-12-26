@@ -22,8 +22,6 @@ describe('Create debit', ()=>{
             value:1223
         })
 
-        console.log(debit)
-    
         expect(debitReposytory.debits).toHaveLength(1)
         expect(debitReposytory.debits[0]).toEqual(debit)
     })

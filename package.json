@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "start": "tsnd --tranpile-only --respawn --ignore-wath node_modules src/server.ts"
+    "start": "tsnd --tranpile-only --respawn --ignore-wath node_modules src/server.ts",
+    "typecheck":"vitest typecheck "
   },
   "keywords": [],
   "author": "",
