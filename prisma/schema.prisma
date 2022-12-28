@@ -38,7 +38,7 @@ model Category {
 }
 
 model Debit {
-  id_cd       String   @id @default(uuid())
+  id      String   @id @default(uuid())
   user_id     String   @db.Text
   category_id String
   description String   @db.VarChar(255)

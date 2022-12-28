@@ -23,8 +23,4 @@ describe('Credit',()=>{
         console.log(addMonths(data_compra,1))
         console.log(data_compra.getDate() > 9)
     })
-
-
-
-
 })

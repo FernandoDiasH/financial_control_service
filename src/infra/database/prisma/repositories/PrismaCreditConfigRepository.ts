@@ -4,6 +4,7 @@ import { PrismaCreditconfigMapper } from "../mappers/prisma-credit-config-mapper
 import { prisma } from "../prisma";
 
 
+
 export class PrismaCreditConfigRepository implements ICreditConfiRepository{
 
 
@@ -15,7 +16,13 @@ export class PrismaCreditConfigRepository implements ICreditConfiRepository{
         })
     }
 
-    findByID(creditID: string): Promise<CreditConfig> {
-        throw new Error("Method not implemented.");
+    async findByID(creditConifgID: string): Promise<CreditConfig | null> {
+        const data = prisma.creditConfig.findUnique({
+            where:{
+                id:creditConifgID
+            }
+        })
+
+        return PrismaCreditconfigMapper.toDomain(data)
     }
 }

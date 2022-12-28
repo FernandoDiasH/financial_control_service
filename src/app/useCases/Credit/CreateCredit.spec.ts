@@ -23,7 +23,5 @@ describe('Create Credit use case', ()=>{
             parcelas:3,
             value:1200
         })
-
-        console.log(creditRepository.credits)
     })
 })
