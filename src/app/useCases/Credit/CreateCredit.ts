@@ -3,6 +3,7 @@ import { ICreditConfiRepository } from "../../repositories/ICreditConfigReposito
 import { addMonths, parseISO } from 'date-fns' 
 import { ICreditRepository } from "../../repositories/ICreditRepository";
 import { CreditDTO } from "../../../infra/DTOs/CreditDTO";
+import { CreditConfig } from "../../entities/CreditConfig";
 
 export class CreateCredit
 {
@@ -22,7 +23,13 @@ export class CreateCredit
         if(!creditConfig){
             throw new Error('not found credit config')
         }
+        
+        let verifyLimit =  await this.verifyCreditLimit(creditConfig, request.value)
 
+        if(verifyLimit){
+            throw new Error('limite de credito estourado') 
+        }
+        
         for(let i = 0; i < request.parcelas; i++ ){
             
             let date_due = this.calculateDateDue(data_compra, creditConfig.day_credit_closing, i )
@@ -51,5 +58,21 @@ export class CreateCredit
         }
 
         throw new Error()
+    }
+
+    private async verifyCreditLimit(creditConfig:CreditConfig, value:number):Promise<boolean> {
+        let sumValue = await this.creditRepository.countValueCredits(creditConfig.user_id, creditConfig.id)
+
+        if(!sumValue){
+            return true
+        }        
+
+        let totalLimit = (sumValue + value) < creditConfig.limit_credit
+       
+        if(totalLimit){
+            return false
+        }
+
+        return true
     }
 }
