@@ -2,16 +2,7 @@ import { Credit } from "../../entities/Credit";
 import { ICreditConfiRepository } from "../../repositories/ICreditConfigRepository";
 import { addMonths, parseISO } from 'date-fns' 
 import { ICreditRepository } from "../../repositories/ICreditRepository";
-
-interface CreditDTO{
-    user_id:string
-    credit_config_id:string
-    category_id:string
-    description:string
-    data_compra:string
-    parcelas:number
-    value: number
-}
+import { CreditDTO } from "../../../infra/DTOs/CreditDTO";
 
 export class CreateCredit
 {
@@ -21,11 +12,16 @@ export class CreateCredit
     ){}
 
     async execute(request:CreditDTO){
-        
+       
         const installment_value = request.value / request.parcelas
         let data_compra = parseISO(request.data_compra)
+        let promisses = []
 
         const creditConfig = await this.creditConfigRepository.findByID(request.credit_config_id)
+
+        if(!creditConfig){
+            throw new Error('not found credit config')
+        }
 
         for(let i = 0; i < request.parcelas; i++ ){
             
@@ -39,8 +35,9 @@ export class CreateCredit
                 installment_value:installment_value
             })
 
-            await this.creditRepository.save(credit)
+            promisses.push(this.creditRepository.save(credit))
         }
+        Promise.all(promisses)
     }
 
     private calculateDateDue(date_purchase:Date, day_credit_closing:number, installments:number ):Date{

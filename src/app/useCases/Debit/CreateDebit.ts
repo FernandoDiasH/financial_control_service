@@ -1,14 +1,6 @@
+import { DebitDTO } from "../../../infra/DTOs/DebitDTO";
 import { Debit } from "../../entities/Debit";
 import { IDebitRepository } from "../../repositories/IDebitRepository";
-
-interface DebitDTO{
-    user_id:string
-    description:string
-    value:number
-    category_id:string
-    dt_purchase:string
-    debit_type:string
-}
 
 export class CreateDebit {
 

@@ -8,7 +8,7 @@ export class PrismaCreditRepository implements ICreditRepository
     async save(credit: Credit): Promise<void> {
         const raw = PrismaCreditMapper.toPrisma(credit)
         
-        prisma.credit.create({
+        await prisma.credit.create({
             data:raw
         })
     }

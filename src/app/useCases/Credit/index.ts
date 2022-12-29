@@ -7,3 +7,5 @@ import { CreateCredit } from "./CreateCredit";
 const creditRepository = new PrismaCreditRepository()
 const creditConfigRepository = new PrismaCreditConfigRepository()
 const createCredit = new CreateCredit(creditConfigRepository, creditRepository)
+
+export {createCredit}

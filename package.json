@@ -2,10 +2,10 @@
   "name": "finance_service",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "start": "tsnd --tranpile-only --respawn --ignore-wath node_modules src/server.ts",
+    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules server.ts",
+    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules ./src/server.ts",
     "typecheck":"vitest typecheck "
   },
   "keywords": [],
