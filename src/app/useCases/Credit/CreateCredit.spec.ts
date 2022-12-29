@@ -21,7 +21,7 @@ describe('Create Credit use case', ()=>{
             data_compra: '2022-10-10',
             description: 'compra teste',
             parcelas:3,
-            value:1200
+            value:1400
         })
     })
 })

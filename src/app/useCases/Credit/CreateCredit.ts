@@ -25,7 +25,7 @@ export class CreateCredit
         }
         
         let verifyLimit =  await this.verifyCreditLimit(creditConfig, request.value)
-
+        
         if(verifyLimit){
             throw new Error('limite de credito estourado') 
         }
@@ -62,13 +62,13 @@ export class CreateCredit
 
     private async verifyCreditLimit(creditConfig:CreditConfig, value:number):Promise<boolean> {
         let sumValue = await this.creditRepository.countValueCredits(creditConfig.user_id, creditConfig.id)
-
-        if(!sumValue){
+  
+        if(!sumValue && sumValue != 0){
             return true
         }        
 
         let totalLimit = (sumValue + value) < creditConfig.limit_credit
-       
+        
         if(totalLimit){
             return false
         }

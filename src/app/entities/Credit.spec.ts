@@ -17,11 +17,4 @@ describe('Credit',()=>{
 
         expect(credit).toBeInstanceOf(Credit)
     })
-
-    it('teste', ()=>{
-        let data_compra =parseISO('2022-11-10')
-
-        console.log(addMonths(data_compra,1))
-        console.log(data_compra.getDate() > 9)
-    })
 })

@@ -9,6 +9,7 @@ export class CreateCreditConfig {
     constructor(
         private creditConfigRepositry: ICreditConfiRepository
     ){}
+    
     async execute(request: CreditConfigDTO):Promise<CreateCreditConfigResponse>{
         const {user_id, limit_credit, description, day_due, day_credit_closing } = request
 
