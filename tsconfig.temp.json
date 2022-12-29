@@ -4,6 +4,7 @@
     "module": "commonjs",
     "allowJs": true,
     "declaration": true,
+    "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -17,5 +18,8 @@
   "include": [
     "src/**/*.ts",
     "test/**/*.ts"
+  ],
+  "exclude": [
+    "./dist"
   ]
 }

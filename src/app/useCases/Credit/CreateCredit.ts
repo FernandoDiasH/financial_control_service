@@ -32,7 +32,8 @@ export class CreateCredit
                 category_id:request.category_id,
                 description:request.description,
                 dt_due: date_due,
-                installment_value:installment_value
+                installment_value:installment_value,
+                credit_config_id:request.credit_config_id
             })
 
             promisses.push(this.creditRepository.save(credit))

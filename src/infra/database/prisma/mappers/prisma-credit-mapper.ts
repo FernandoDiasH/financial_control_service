@@ -10,7 +10,8 @@ export class PrismaCreditMapper{
             description:credit.description,
             credit_status:credit.credit_status,
             dt_due:credit.dt_due,
-            installment_value:credit.installment_value
+            installment_value:credit.installment_value,
+            credit_config_id:credit.credit_config_id
         }
     }
 }

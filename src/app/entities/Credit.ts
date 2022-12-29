@@ -6,7 +6,8 @@ interface CreditProps{
     description:string
     installment_value:number
     dt_due: Date
-    credit_status?:Date | null
+    credit_status?:Date | null,
+    credit_config_id: string
 }
 
 export class Credit{
@@ -49,6 +50,10 @@ export class Credit{
 
     get credit_status (){
         return this.props.credit_status
+    }
+    
+    get credit_config_id (){
+        return this.props.credit_config_id
     }
 
     pay(){
