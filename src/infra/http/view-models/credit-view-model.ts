@@ -7,7 +7,9 @@ export class CreditViewModel{
             description:credit.description,
             installment_value:credit.installment_value,
             credit_status: credit.credit_status,
-            vencimento:credit.dt_due
+            vencimento:credit.dt_due,
+            category:credit.category?._descripiton,
+            conta: credit.creditConfig?.description
         }
     }
 }

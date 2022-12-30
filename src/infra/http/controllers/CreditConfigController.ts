@@ -7,7 +7,7 @@ export class CreditConfigController
     static async create(req:Request, res:Response){
         const { user_id, limit_credit, description, day_credit_closing, day_due } = req.body
 
-        const category = await createCreditConfig.execute({  
+        const creditConfig = await createCreditConfig.execute({  
             user_id: user_id ,
             limit_credit: limit_credit ,
             description: description,
@@ -15,7 +15,7 @@ export class CreditConfigController
             day_due: day_due 
         })
         
-        return res.status(200).json(CreditConfigViewModel.toHTTP(category))
+        return res.status(200).json(CreditConfigViewModel.toHTTP(creditConfig))
     }
 }
 

@@ -38,8 +38,13 @@ export class PrismaCreditRepository implements ICreditRepository
                     gt:start_dt,
                     lt:end_dt
                 }
+            }, 
+            include:{
+                 category:true,
+                 credit_Config:true
             }
         })
+       
         const credits = raw.map(credit => {
             return  PrismaCreditMapper.toDomain(credit)
         })

@@ -3,6 +3,13 @@ import { ICreditRepository } from "../../src/app/repositories/ICreditRepository"
 
 export class InMemoryCreditRepository implements ICreditRepository
 {
+    findCreditsByUserIdAndMonth(user_id: string, start_dt: Date, end_dt: Date): Promise<Credit[]> {
+        throw new Error("Method not implemented.")
+    }
+    
+    findDistinctMounts(user_id: string): Promise<Date[]> {
+        throw new Error("Method not implemented.")
+    }
     
     public credits:Credit[] = []
 
