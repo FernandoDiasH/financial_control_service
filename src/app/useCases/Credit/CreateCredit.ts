@@ -7,32 +7,44 @@ import { CreditConfig } from "../../entities/CreditConfig";
 
 export class CreateCredit
 {
+
+    private creditConfig: CreditConfig
+    private date_purchase: Date
+
     constructor(
         private creditConfigRepository:ICreditConfiRepository,
         private creditRepository:ICreditRepository
     ){}
 
     async execute(request:CreditDTO){
+              
+        this.date_purchase = parseISO(request.data_compra)
+
+        this.creditConfig = await this.creditConfigRepository.findByID(request.credit_config_id)
+
+        await this.verifyCreditLimit(request.value)
        
-        const installment_value = request.value / request.parcelas
-        let data_compra = parseISO(request.data_compra)
-        let promisses = []
-
-        const creditConfig = await this.creditConfigRepository.findByID(request.credit_config_id)
-
-        if(!creditConfig){
-            throw new Error('not found credit config')
-        }
+        this.genereateCreditis(request)
         
-        let verifyLimit =  await this.verifyCreditLimit(creditConfig, request.value)
+    }
+
+    private async verifyCreditLimit(value:number):Promise<void> {
+        let sumValuesRegistered = await this.creditRepository.countValueCredits(this.creditConfig.user_id, this.creditConfig.id)
         
-        if(verifyLimit){
+        let totalLimit = (sumValuesRegistered + value) < this.creditConfig.limit_credit
+        
+        if(!totalLimit){
             throw new Error('limite de credito estourado') 
         }
-        
+    }
+
+    private genereateCreditis(request:CreditDTO){
+        const installment_value = request.value / request.parcelas
+        let promisses = []
+
         for(let i = 0; i < request.parcelas; i++ ){
             
-            let date_due = this.calculateDateDue(data_compra, creditConfig.day_credit_closing, i )
+            let date_due = this.calculateDateDue( i )
            
             const credit = new Credit({
                 user_id: request.user_id,
@@ -43,36 +55,22 @@ export class CreateCredit
                 credit_config_id:request.credit_config_id
             })
 
-            promisses.push(this.creditRepository.save(credit))
+            promisses.push( this.creditRepository.save(credit) )
         }
+
         Promise.all(promisses)
     }
 
-    private calculateDateDue(date_purchase:Date, day_credit_closing:number, installments:number ):Date{
-        if(date_purchase.getDate() > day_credit_closing) {
-            return addMonths(date_purchase, installments + 1)
+    private calculateDateDue(installments:number ): Date{
+        if(this.date_purchase.getDate() > this.creditConfig.day_credit_closing) {
+            return addMonths(this.date_purchase, installments + 1)
         }
 
-        if(date_purchase.getDate() < day_credit_closing){
-            return  addMonths(date_purchase, installments)
+        if(this.date_purchase.getDate() < this.creditConfig.day_credit_closing){
+            return  addMonths(this.date_purchase, installments)
         }
 
-        throw new Error()
+        throw new Error('Error calculate date due')
     }
 
-    private async verifyCreditLimit(creditConfig:CreditConfig, value:number):Promise<boolean> {
-        let sumValue = await this.creditRepository.countValueCredits(creditConfig.user_id, creditConfig.id)
-  
-        if(!sumValue && sumValue != 0){
-            return true
-        }        
-
-        let totalLimit = (sumValue + value) < creditConfig.limit_credit
-        
-        if(totalLimit){
-            return false
-        }
-
-        return true
-    }
 }

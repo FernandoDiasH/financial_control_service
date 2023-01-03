@@ -14,7 +14,7 @@ export class PrismaCreditRepository implements ICreditRepository
         })
     }
 
-    async countValueCredits(user_id: string, credit_config_id: string): Promise<number | null> {
+    async countValueCredits(user_id: string, credit_config_id: string): Promise<number> {
         const value = await prisma.credit.aggregate({
             _sum:{
                 installment_value:true
@@ -26,7 +26,11 @@ export class PrismaCreditRepository implements ICreditRepository
                 
             }
         })
-
+        
+        if(value._sum.installment_value == null){
+            return 0
+        }
+        
         return value._sum.installment_value
     }
 

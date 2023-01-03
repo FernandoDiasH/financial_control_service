@@ -16,15 +16,13 @@ export class PrismaCreditConfigRepository implements ICreditConfiRepository{
         })
     }
 
-    async findByID(creditConifgID: string): Promise<CreditConfig | null> {
-        const data = await prisma.creditConfig.findUnique({
+    async findByID(creditConifgID: string): Promise<CreditConfig> {
+        const data = await prisma.creditConfig.findUniqueOrThrow({
             where:{
                 id:creditConifgID
             }
         })
-        if(data){
-            return PrismaCreditconfigMapper.toDomain(data)
-        }
-        return null
+
+        return PrismaCreditconfigMapper.toDomain(data)
     }
 }
