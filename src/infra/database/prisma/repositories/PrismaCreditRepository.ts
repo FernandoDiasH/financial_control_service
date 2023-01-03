@@ -42,11 +42,14 @@ export class PrismaCreditRepository implements ICreditRepository
                 dt_due:{
                     gt:start_dt,
                     lt:end_dt
-                }
+                },
             }, 
             include:{
                  category:true,
                  credit_Config:true
+            },
+            orderBy:{
+                dt_due:'asc'
             }
         })
        
