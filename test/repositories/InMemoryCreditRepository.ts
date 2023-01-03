@@ -17,7 +17,7 @@ export class InMemoryCreditRepository implements ICreditRepository
         this.credits.push(data) 
     }
 
-    async countValueCredits(user_id: string, credit_config_id: string): Promise<number | null> {
+    async countValueCredits(user_id: string, credit_config_id: string): Promise<number> {
         let initialvalue = 0
         let value = this.credits.reduce((acc, credit) =>{
 
