@@ -3,6 +3,7 @@ import { PrismaCreditRepository } from "../../../infra/database/prisma/repositor
 import { CreateCredit } from "./CreateCredit";
 import { FindCredits } from "./findCredits";
 import { FindDistincstMonts } from "./findDistinctsMouth";
+import { PayCredit } from "./PayCredit";
 
 
 
@@ -11,5 +12,6 @@ const creditConfigRepository = new PrismaCreditConfigRepository()
 const createCredit = new CreateCredit(creditConfigRepository, creditRepository)
 const findcredits = new FindCredits(creditRepository)
 const findDistinctMounts = new FindDistincstMonts(creditRepository)
+const payCredt = new PayCredit(creditRepository)
 
-export {createCredit, findcredits, findDistinctMounts}
+export {createCredit, findcredits, findDistinctMounts, payCredt}

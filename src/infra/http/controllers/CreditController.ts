@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { createCredit, findcredits, findDistinctMounts } from "../../../app/useCases/Credit"
+import { createCredit, findcredits, findDistinctMounts, payCredt } from "../../../app/useCases/Credit"
 import {parseISO} from 'date-fns'
 import { CreditViewModel } from "../view-models/credit-view-model"
 
@@ -39,5 +39,13 @@ export class CreditController
         let dates = await findDistinctMounts.execute(user_id)
       
         return res.status(200).json(dates)
+    }
+
+    static async payCredit(req:Request, res:Response){
+        const { credit_id } = req.body
+        
+        await payCredt.execute(credit_id)
+
+        return res.status(200).json({msg:"pago"})
     }
 }

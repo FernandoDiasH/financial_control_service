@@ -5,6 +5,7 @@ import { prisma } from "../prisma";
 
 export class PrismaCreditRepository implements ICreditRepository
 {
+    
  
     async save(credit: Credit): Promise<void> {
         const raw = PrismaCreditMapper.toPrisma(credit)
@@ -70,5 +71,34 @@ export class PrismaCreditRepository implements ICreditRepository
         })
 
         return raw.map(date=> date.dt_due)         
+    }
+
+    async update(credit: Credit): Promise<void> {
+
+        const raw = PrismaCreditMapper.toPrisma(credit)
+        await prisma.credit.update({
+            where:{
+                id:credit.id
+            },
+            data:raw
+        })
+    }
+
+    async findByCreditID(credit_id: string): Promise<Credit> {
+        const raw =  await prisma.credit.findUniqueOrThrow({
+            where:{
+                id:credit_id
+            }
+        })
+
+        return new Credit({
+            user_id:raw.user_id,
+            category_id:raw.category_id,
+            credit_config_id:raw.credit_config_id,
+            description:raw.description,
+            dt_due:raw.dt_due,
+            installment_value:raw.installment_value,
+            credit_status:raw.credit_status,
+        }, raw.id)
     }
 }

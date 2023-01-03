@@ -19,6 +19,8 @@ routes.post('/credit', CreditController.create)
 routes.post('/debit', DebitController.create)
 
 
+routes.post("/credit/pay", CreditController.payCredit)
+
 routes.post("/find/credits", CreditController.findCredits)
 routes.post("/find/months", CreditController.findDistinctMounts)
 
