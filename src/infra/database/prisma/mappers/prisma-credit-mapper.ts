@@ -24,7 +24,7 @@ export class PrismaCreditMapper{
         }
     }
 
-    static toDomain(credit:prismaCreditDomain ){
+    static toDomain(credit:prismaCredit){
         return new Credit({
             user_id:credit.user_id,
             category_id:credit.category_id,
@@ -33,17 +33,6 @@ export class PrismaCreditMapper{
             dt_due:credit.dt_due,
             installment_value:credit.installment_value,
             credit_status:credit.credit_status,
-            category:new Category({
-                user_id:credit.category.user_id,
-                description:credit.category.description
-            }, credit.category.id),
-            creditConfig: new CreditConfig({
-                user_id:credit.credit_Config.user_id,
-                day_credit_closing:credit.credit_Config.day_credit_closing,
-                day_due:credit.credit_Config.day_due,
-                description:credit.credit_Config.description,
-                limit_credit:credit.credit_Config.limit_credit
-            }, credit.credit_Config.id)
         }, credit.id)
     }
 }

@@ -44,19 +44,12 @@ export class PrismaCreditRepository implements ICreditRepository
                     lt:end_dt
                 },
             }, 
-            include:{
-                 category:true,
-                 credit_Config:true
-            },
             orderBy:{
                 dt_due:'asc'
             }
         })
-       
-        const credits = raw.map(credit => {
-            return  PrismaCreditMapper.toDomain(credit)
-        })
-        return credits
+    
+        return raw.map( credit => PrismaCreditMapper.toDomain(credit) ) 
     }
 
     async findDistinctMounts(user_id: string): Promise<Date[]> {
@@ -93,15 +86,6 @@ export class PrismaCreditRepository implements ICreditRepository
                 id:credit_id
             }
         })
-
-        return new Credit({
-            user_id:raw.user_id,
-            category_id:raw.category_id,
-            credit_config_id:raw.credit_config_id,
-            description:raw.description,
-            dt_due:raw.dt_due,
-            installment_value:raw.installment_value,
-            credit_status:raw.credit_status,
-        }, raw.id)
+        return PrismaCreditMapper.toDomain(raw)
     }
 }

@@ -1,15 +1,28 @@
+import { Category } from "../../../app/entities/Category";
 import { Credit } from "../../../app/entities/Credit";
+import { CreditConfig } from "../../../app/entities/CreditConfig";
+
+interface CreditsData{
+    credits:Credit[]
+    categories:Category[]
+    creditConfig:CreditConfig[]
+}
 
 export class CreditViewModel{
-    static toHTTP(credit:Credit){
-        return {
-            id:credit.id,
-            description:credit.description,
-            installment_value:credit.installment_value,
-            credit_status: credit.credit_status,
-            vencimento:credit.dt_due,
-            category:credit.category?._descripiton,
-            conta: credit.creditConfig?.description
-        }
+    static toHTTP(data:CreditsData){
+        return data.credits.map(credit => {
+            let category = data.categories.find(category =>  credit.category_id == category.id )
+            
+            let creditConfig = data.creditConfig.find( config => credit.credit_config_id == config.id )
+            return {
+                id:credit.id,
+                vencimento:credit.dt_due,
+                descricao:credit.description,
+                valor_parcela:credit.installment_value,
+                status:credit.credit_status ,
+                categoria:category?._descripiton,
+                banco:creditConfig?.description
+            }
+        })
     }
 }

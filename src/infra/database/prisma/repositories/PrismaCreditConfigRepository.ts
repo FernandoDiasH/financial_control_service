@@ -6,8 +6,7 @@ import { prisma } from "../prisma";
 
 
 export class PrismaCreditConfigRepository implements ICreditConfiRepository{
-
-
+  
     async create(creditConfig: CreditConfig): Promise<void> {
         const raw = PrismaCreditconfigMapper.toPrisma(creditConfig)
 
@@ -24,5 +23,15 @@ export class PrismaCreditConfigRepository implements ICreditConfiRepository{
         })
 
         return PrismaCreditconfigMapper.toDomain(data)
+    }
+
+    async findAllByUserID(user_id: string): Promise<CreditConfig[]> {
+        const data = await prisma.creditConfig.findMany({
+            where:{
+                user_id:user_id
+            }
+        })
+
+        return data.map(creditConfig => PrismaCreditconfigMapper.toDomain(creditConfig))
     }
 }

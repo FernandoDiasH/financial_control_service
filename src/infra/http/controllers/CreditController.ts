@@ -27,10 +27,8 @@ export class CreditController
         let start_dt = parseISO(data.start_dt)
         let end_dt = parseISO(data.end_dt)
 
-
-        const credits = await findcredits.execute({user_id, start_dt, end_dt})
-        
-        return res.status(200).json(credits.map(credit => CreditViewModel.toHTTP(credit)))
+        const credits = await findcredits.execute({user_id, start_dt, end_dt}) 
+        return res.status(200).json(CreditViewModel.toHTTP(credits))
     }
 
     static async findDistinctMounts(req:Request, res:Response){

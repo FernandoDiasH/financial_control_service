@@ -10,8 +10,6 @@ interface CreditProps{
     dt_due: Date
     credit_status?:Date | null,
     credit_config_id: string,
-    category?:Category,
-    creditConfig?:CreditConfig
 }
 
 export class Credit{
@@ -24,7 +22,7 @@ export class Credit{
         this._id = id ?? randomUUID()
         this.props = {
             ...props,
-            credit_status: null
+            credit_status: null ?? props.credit_status
         }
     }
 
@@ -59,15 +57,7 @@ export class Credit{
     get credit_config_id (){
         return this.props.credit_config_id
     }
-
-    get category (){
-        return this.props.category
-    }
-
-    get creditConfig (){
-        return this.props.creditConfig
-    }
-
+    
     pay(){
         this.props.credit_status = new Date()
     }
