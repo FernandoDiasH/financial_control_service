@@ -6,8 +6,10 @@ COPY ./src/package*.json ./
 
 RUN npm i
 
-COPY ./src .
+COPY ./prisma ./prisma
 
-EXPOSE ${APP_PORT} ${DB_PORT}
+COPY ./src ./src
+
+EXPOSE ${APP_PORT}
 
 CMD ["npm", "run", "start"]
