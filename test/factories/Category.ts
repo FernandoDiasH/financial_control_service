@@ -5,7 +5,7 @@ type Override = Partial<Category>
 export function makeCategory( override:Override = {}, id?:string ){
     return new Category({
         user_id:'usuario-teste',
-        description:'compra teste',
+        description:'categoria teste',
         ...override
-    }, id)
+    }, "teste")
 }

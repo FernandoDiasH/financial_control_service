@@ -3,14 +3,6 @@ import { ICreditRepository } from "../../src/app/repositories/ICreditRepository"
 
 export class InMemoryCreditRepository implements ICreditRepository
 {
-    findCreditsByUserIdAndMonth(user_id: string, start_dt: Date, end_dt: Date): Promise<Credit[]> {
-        throw new Error("Method not implemented.")
-    }
-    
-    findDistinctMounts(user_id: string): Promise<Date[]> {
-        throw new Error("Method not implemented.")
-    }
-    
     public credits:Credit[] = []
 
     async save(data: Credit): Promise<void> {
@@ -31,5 +23,44 @@ export class InMemoryCreditRepository implements ICreditRepository
 
         return value
     }
+
+    async update(credit: Credit): Promise<void> {
+        const result = this.credits.findIndex(data => credit.id == data.id)
+
+        this.credits[result] = credit
+    }
+
+    async findByCreditID(credit_id: string): Promise<Credit> {
+        const credit = this.credits.find(credit => credit.id == credit_id)
+
+        if(credit){
+            return credit
+        }
+
+        throw new Error()
+    }
+    async findCreditsByUserIdAndMonth(user_id: string, start_dt: Date, end_dt: Date): Promise<Credit[]> {
+        const credit = this.credits.filter(credit => {
+            if(credit.user_id == user_id && start_dt < credit.dt_due && end_dt > credit.dt_due ){
+                return credit
+            }
+        })
+        
+        if(credit){
+            return credit
+        }
+
+        throw new Error()
+    }
     
+    async findDistinctMounts(user_id: string): Promise<Date[]> {
+
+        const dates = this.credits.map(credit => credit.dt_due)
+        
+        if(dates){
+            return dates
+        }
+
+        throw new Error()
+    }
 }

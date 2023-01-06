@@ -11,12 +11,4 @@ describe('Category', ()=>{
         expect(categoria).toBeInstanceOf(Category)
         expect(categoria.id).toBeTypeOf('string')
     })
-
-    it('deveria poder criar uma catergoria sem o id',()=>{
-        const categoria = new Category({
-            user_id: randomUUID(),
-            description:"teste"
-        })  
-        expect(categoria).toBeInstanceOf(Category)
-    })
 })

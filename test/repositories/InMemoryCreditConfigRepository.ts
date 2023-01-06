@@ -3,7 +3,6 @@ import { ICreditConfiRepository } from "../../src/app/repositories/ICreditConfig
 
 export class InMemoryCreditConfigRepository implements ICreditConfiRepository
 {
-
     public creditConfigs:CreditConfig[] = []
 
     async create(data: CreditConfig): Promise<void> {
@@ -18,6 +17,16 @@ export class InMemoryCreditConfigRepository implements ICreditConfiRepository
         }
 
         return creditConifg
+    }
+
+    async findAllByUserID(user_id: string): Promise<CreditConfig[]> {
+        const data = this.creditConfigs.filter(config => config.user_id == user_id)
+
+        if(data){
+            return data
+        }
+
+        throw new Error()
     }
     
 }

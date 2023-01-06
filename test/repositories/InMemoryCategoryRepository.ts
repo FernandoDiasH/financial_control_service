@@ -4,6 +4,7 @@ import { ICategoryRepository } from "../../src/app/repositories/ICategoryReposit
 
 export class InMemoryCategoryRepository implements ICategoryRepository
 {
+   
     public categories:Category[] = []
 
     async create(data: Category): Promise<void> {
@@ -17,5 +18,15 @@ export class InMemoryCategoryRepository implements ICategoryRepository
             throw new Error('Nenhuma categoria foi encontrada')
         }
         return categoria
+    }
+
+    async findAllByUserID(user_id: string): Promise<Category[]> {
+        const data = this.categories.filter(category => category._user_id == user_id)
+
+        if(data){
+            return data
+        }
+        
+        throw new Error()
     }
 }
