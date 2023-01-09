@@ -2,7 +2,7 @@ FROM node:19-alpine3.16
 
 WORKDIR /var/www
 
-COPY ./src/package*.json ./
+COPY ./package*.json ./
 
 RUN npm i
 
