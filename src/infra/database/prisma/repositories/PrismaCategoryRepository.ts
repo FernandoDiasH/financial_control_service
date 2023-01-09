@@ -1,4 +1,4 @@
-import { Category } from "../../../../app/entities/Category";
+import { Category } from "@app/entities/Category";
 import { ICategoryRepository } from "../../../../app/repositories/ICategoryRepository";
 import { PrismaCategoryMapper } from "../mappers/prisma-category-mapper";
 import { prisma } from "../prisma";

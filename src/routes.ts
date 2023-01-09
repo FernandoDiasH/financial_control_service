@@ -3,7 +3,6 @@ import { CreditConfigController } from "./infra/http/controllers/CreditConfigCon
 import { CreditController } from "./infra/http/controllers/CreditController";
 import { DebitController } from "./infra/http/controllers/DebitController";
 import { Router } from "express";
-import { findcredits } from "./app/useCases/Credit";
 
 
 
