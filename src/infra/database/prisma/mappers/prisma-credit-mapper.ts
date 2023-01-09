@@ -1,14 +1,9 @@
 import { Credit } from "../../../../app/entities/Credit";
-import {Credit as prismaCredit, CreditConfig as prismaCreditConfig, Category as prismaCategory} from '@prisma/client'
-import { Category } from "../../../../app/entities/Category";
-import { CreditConfig } from "../../../../app/entities/CreditConfig";
+import {Credit as prismaCredit} from '@prisma/client'
 
 
 
-type prismaCreditDomain = (prismaCredit & {
-    category: prismaCategory;
-    credit_Config: prismaCreditConfig;
-})
+
 export class PrismaCreditMapper{
     
     static toPrisma(credit:Credit){

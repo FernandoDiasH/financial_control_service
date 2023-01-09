@@ -11,9 +11,9 @@ interface CreditsData{
 export class CreditViewModel{
     static toHTTP(data:CreditsData){
         return data.credits.map(credit => {
-            let category = data.categories.find(category =>  credit.category_id == category.id )
+            const category = data.categories.find(category =>  credit.category_id == category.id )
             
-            let creditConfig = data.creditConfig.find( config => credit.credit_config_id == config.id )
+            const creditConfig = data.creditConfig.find( config => credit.credit_config_id == config.id )
             return {
                 id:credit.id,
                 vencimento:credit.dt_due,

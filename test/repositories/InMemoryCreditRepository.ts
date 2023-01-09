@@ -10,8 +10,8 @@ export class InMemoryCreditRepository implements ICreditRepository
     }
 
     async countValueCredits(user_id: string, credit_config_id: string): Promise<number> {
-        let initialvalue = 0
-        let value = this.credits.reduce((acc, credit) =>{
+        const initialvalue = 0
+        const value = this.credits.reduce((acc, credit) =>{
 
             if(credit.user_id === user_id && credit.credit_config_id === credit_config_id){
                 acc + credit.installment_value

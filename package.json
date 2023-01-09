@@ -10,6 +10,8 @@
     "prod": "npm run compile && node ./dist/server.js",
     "local": "nodemon --legacy-watch ./src/server.ts ",
     "dev:local": "tsnd  --respawn --ignore-watch node_modules ./src/server.ts",
+    "lint":"eslint ./src ./test --ext .ts",
+    "lint:fix":"eslint ./src ./test --ext .ts --fix",
     "test": "vitest",
     "typecheck": "vitest typecheck "
   },
@@ -20,6 +22,9 @@
     "@types/express": "^4.17.15",
     "@types/module-alias": "^2.0.1",
     "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
     "nodemon": "^2.0.20",
     "prisma": "^4.7.1",
     "ts-node-dev": "^2.0.0",

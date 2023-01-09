@@ -1,7 +1,6 @@
 import { randomUUID } from "crypto";
 import { describe, expect, it } from "vitest";
 import { InMemoryCreditConfigRepository } from "../../../../test/repositories/InMemoryCreditConfigRepository";
-import { CreditConfig } from "../../entities/CreditConfig";
 import { CreateCreditConfig } from "./CreateCreditConfig";
 
 

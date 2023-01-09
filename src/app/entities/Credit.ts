@@ -1,7 +1,4 @@
 import { randomUUID } from "crypto"
-import { Category } from "./Category"
-import { CreditConfig } from "./CreditConfig"
-
 interface CreditProps{
     user_id:string
     category_id:string

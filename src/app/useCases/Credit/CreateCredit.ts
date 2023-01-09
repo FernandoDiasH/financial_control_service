@@ -29,9 +29,9 @@ export class CreateCredit
     }
 
     private async verifyCreditLimit(value:number):Promise<void> {
-        let sumValuesRegistered = await this.creditRepository.countValueCredits(this.creditConfig.user_id, this.creditConfig.id)
+        const sumValuesRegistered = await this.creditRepository.countValueCredits(this.creditConfig.user_id, this.creditConfig.id)
         
-        let totalLimit = (sumValuesRegistered + value) < this.creditConfig.limit_credit
+        const totalLimit = (sumValuesRegistered + value) < this.creditConfig.limit_credit
         
         if(!totalLimit){
             throw new Error('limite de credito estourado') 
@@ -40,11 +40,11 @@ export class CreateCredit
 
     private genereateCreditis(request:CreditDTO){
         const installment_value = request.value / request.parcelas
-        let promisses = []
+        const promisses = []
 
         for(let i = 0; i < request.parcelas; i++ ){
             
-            let date_due = this.calculateDateDue( i )
+            const date_due = this.calculateDateDue( i )
            
             const credit = new Credit({
                 user_id: request.user_id,

@@ -7,5 +7,5 @@ export function makeCategory( override:Override = {}, id?:string ){
         user_id:'usuario-teste',
         description:'categoria teste',
         ...override
-    }, "teste")
+    }, "teste" ?? id)
 }

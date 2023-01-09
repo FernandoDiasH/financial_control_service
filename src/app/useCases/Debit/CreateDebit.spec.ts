@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { makeCategory } from "../../../../test/factories/Category";
-import { makeDebit } from "../../../../test/factories/DebitFactory";
 import { InMemoryDebitRepository } from "../../../../test/repositories/InMemoryDebitRepository";
 import { CreateDebit } from "./CreateDebit";
 

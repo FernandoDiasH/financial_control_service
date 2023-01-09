@@ -14,8 +14,15 @@ export class PrismaCategoryRepository implements ICategoryRepository{
         }) 
     }
 
-    findById(id: string, user_id: string): Promise<Category> {
-        throw new Error("Method not implemented.");
+    async findById(id: string, user_id: string): Promise<Category> {
+        const raw = await prisma.category.findFirstOrThrow({
+            where:{
+                id:id,
+                user_id:user_id
+            }
+        })
+        
+        return PrismaCategoryMapper.toDomain(raw)
     }
 
     async findAllByUserID(user_id: string): Promise<Category[]> {

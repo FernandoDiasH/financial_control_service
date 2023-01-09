@@ -24,8 +24,8 @@ export class CreditController
 
     static async findCredits(req:Request, res:Response){
         const {user_id, ...data} = req.body
-        let start_dt = parseISO(data.start_dt)
-        let end_dt = parseISO(data.end_dt)
+        const start_dt = parseISO(data.start_dt)
+        const end_dt = parseISO(data.end_dt)
 
         const credits = await findcredits.execute({user_id, start_dt, end_dt}) 
         return res.status(200).json(CreditViewModel.toHTTP(credits))
@@ -34,7 +34,7 @@ export class CreditController
     static async findDistinctMounts(req:Request, res:Response){
         const { user_id } = req.body
         
-        let dates = await findDistinctMounts.execute(user_id)
+        const dates = await findDistinctMounts.execute(user_id)
       
         return res.status(200).json(dates)
     }

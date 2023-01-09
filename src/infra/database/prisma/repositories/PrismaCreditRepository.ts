@@ -36,7 +36,7 @@ export class PrismaCreditRepository implements ICreditRepository
     }
 
     async findCreditsByUserIdAndMonth(user_id: string, start_dt: Date, end_dt: Date): Promise<Credit[]> {
-        let raw =  await prisma.credit.findMany({
+        const raw =  await prisma.credit.findMany({
             where:{
                 user_id:user_id,
                 dt_due:{
@@ -53,7 +53,7 @@ export class PrismaCreditRepository implements ICreditRepository
     }
 
     async findDistinctMounts(user_id: string): Promise<Date[]> {
-        let raw =  await prisma.credit.findMany({
+        const raw =  await prisma.credit.findMany({
             where:{
                 user_id:user_id,
             },

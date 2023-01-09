@@ -1,6 +1,5 @@
 import { expect, it, describe } from 'vitest'
 import { Category } from './Category'
-import { randomUUID } from 'node:crypto'
 
 describe('Category', ()=>{
     it('deveria poder criar uma categoria', ()=>{
