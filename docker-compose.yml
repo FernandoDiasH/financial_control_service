@@ -1,18 +1,18 @@
 version: '3.8'
 services:
-  app:
-    build: ./
-    container_name: "finance_service_app"
-    restart: unless-stopped
-    working_dir: /var/www
-    volumes:
-      - ./:/var/www
-    ports:
-      - "${APP_PORT}:${APP_PORT}"
-    env_file:
-      - ./.env
-    networks:
-      - finance_service
+  # app:
+  #   build: ./
+  #   container_name: "finance_service_app"
+  #   restart: unless-stopped
+  #   working_dir: /var/www
+  #   volumes:
+  #     - ./:/var/www
+  #   ports:
+  #     - "${APP_PORT}:${APP_PORT}"
+  #   env_file:
+  #     - ./.env
+  #   networks:
+  #     - finance_service
 
   db:
     image: mysql:8.0
