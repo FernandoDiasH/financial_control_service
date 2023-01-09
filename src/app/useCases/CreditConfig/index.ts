@@ -1,7 +1,7 @@
-import { PrismaCreditConfigRepository } from "../../../infra/database/prisma/repositories/PrismaCreditConfigRepository";
-import { CreateCreditConfig } from "./CreateCreditConfig";
+import { PrismaCreditConfigRepository } from '../../../infra/database/prisma/repositories/PrismaCreditConfigRepository';
+import { CreateCreditConfig } from './CreateCreditConfig';
 
-const creditConfigReposytpory = new PrismaCreditConfigRepository()
-const createCreditConfig = new CreateCreditConfig(creditConfigReposytpory)
+const creditConfigReposytpory = new PrismaCreditConfigRepository();
+const createCreditConfig = new CreateCreditConfig(creditConfigReposytpory);
 
-export {createCreditConfig}
+export { createCreditConfig };

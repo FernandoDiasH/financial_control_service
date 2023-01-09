@@ -1,21 +1,21 @@
-import { randomUUID } from 'crypto'
-import {describe, expect, it, } from 'vitest'
-import { InMemoryCategoryRepository } from '../../../../test/repositories/InMemoryCategoryRepository'
-import { CreateCategory } from './CreateCategory'
+import { randomUUID } from 'crypto';
+import { describe, expect, it } from 'vitest';
+import { InMemoryCategoryRepository } from '../../../../test/repositories/InMemoryCategoryRepository';
+import { CreateCategory } from './CreateCategory';
 
-describe('Create Category use case', ()=>{
-    it('criar uma categoria espero registre', async  ()=>{
+describe('Create Category use case', () => {
+    it('criar uma categoria espero registre', async () => {
+        const inMemoryCategoryRepository = new InMemoryCategoryRepository();
+        const createCategoryUseCase = new CreateCategory(
+            inMemoryCategoryRepository
+        );
 
-        const inMemoryCategoryRepository = new InMemoryCategoryRepository()
-        const createCategoryUseCase = new CreateCategory(inMemoryCategoryRepository)
+        const categoria = await createCategoryUseCase.execute({
+            user_id: randomUUID(),
+            description: 'Categoria teste',
+        });
 
-        const categoria  = await createCategoryUseCase.execute({
-            user_id:randomUUID(),
-            description: "Categoria teste" 
-        })
-
-        expect(inMemoryCategoryRepository.categories).toHaveLength(1)
-        expect(inMemoryCategoryRepository.categories[0]).toEqual(categoria)
-
-    })
-})
+        expect(inMemoryCategoryRepository.categories).toHaveLength(1);
+        expect(inMemoryCategoryRepository.categories[0]).toEqual(categoria);
+    });
+});

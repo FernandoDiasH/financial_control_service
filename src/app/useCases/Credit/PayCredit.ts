@@ -1,18 +1,13 @@
-import { ICreditRepository } from "../../repositories/ICreditRepository";
-
+import { ICreditRepository } from '../../repositories/ICreditRepository';
 
 export class PayCredit {
-    
-    constructor(
-        private creditRepository: ICreditRepository
-    ){}
+    constructor(private creditRepository: ICreditRepository) {}
 
-    async execute(credit_id:string){
+    async execute(credit_id: string) {
+        const credit = await this.creditRepository.findByCreditID(credit_id);
 
-        const credit = await this.creditRepository.findByCreditID(credit_id)
+        credit.pay();
 
-        credit.pay()
-
-        this.creditRepository.update(credit) 
+        this.creditRepository.update(credit);
     }
 }

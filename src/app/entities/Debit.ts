@@ -1,44 +1,43 @@
-import { randomUUID } from "node:crypto"
+import { randomUUID } from 'node:crypto';
 
-interface DebitProps{
-    user_id:string
-    description:string
-    value:number
-    category_id:string
-    dt_purchase:string
-    debit_type:string
+interface DebitProps {
+    user_id: string;
+    description: string;
+    value: number;
+    category_id: string;
+    dt_purchase: string;
+    debit_type: string;
 }
 
-export class Debit{
-    private _id:string
-    private props: DebitProps
+export class Debit {
+    private _id: string;
+    private props: DebitProps;
 
-    constructor(props:DebitProps, id?:string){
-        
-        this._id = id ?? randomUUID()
-        this.props = props
-    }
-
-    get id(){
-        return this._id
+    constructor(props: DebitProps, id?: string) {
+        this._id = id ?? randomUUID();
+        this.props = props;
     }
 
-    get user_id(){
-        return this.props.user_id
+    get id() {
+        return this._id;
     }
-    get description(){
-        return this.props.description
+
+    get user_id() {
+        return this.props.user_id;
     }
-    get value(){
-        return this.props.value
+    get description() {
+        return this.props.description;
     }
-    get category_id(){
-        return this.props.category_id
+    get value() {
+        return this.props.value;
     }
-    get dt_purchase(){
-        return this.props.dt_purchase
+    get category_id() {
+        return this.props.category_id;
     }
-    get debit_type(){
-        return this.props.debit_type
+    get dt_purchase() {
+        return this.props.dt_purchase;
+    }
+    get debit_type() {
+        return this.props.debit_type;
     }
 }

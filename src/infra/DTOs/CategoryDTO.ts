@@ -1,4 +1,4 @@
 export interface CategoryDTO {
-    user_id:string
-    description:string
+    user_id: string;
+    description: string;
 }
