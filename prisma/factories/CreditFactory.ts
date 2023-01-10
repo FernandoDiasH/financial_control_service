@@ -7,7 +7,6 @@ export function CreditFactory(qtd:number, user_id:string, categories_ids:Categor
     const data:Credit[] = []
 
     for(let i = 0 ; i < qtd; i++ ) {
-        console.log(credit_config_id)
         const category = faker.helpers.arrayElement(categories_ids).id
         const creditConfig = faker.helpers.arrayElement(credit_config_id).id
 

@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client"
 import { makeCategories } from "./factories/Category"
 import { CreditConfigFactory } from "./factories/CreditConfigFactory"
 import { CreditFactory } from "./factories/CreditFactory"
+import { DebitFactory } from "./factories/DebitFactory"
 
 const prisma = new PrismaClient()
 
@@ -12,7 +13,7 @@ async function main(){
     let categories = await prisma.category.findMany()
     let creditConfigs = await prisma.creditConfig.findMany()
 
-    if(!categories){
+    if(categories.length < 1){
          categories = makeCategories(user_id)
 
          console.log("create category");
@@ -21,7 +22,7 @@ async function main(){
          })
     }
 
-    if(!creditConfigs){
+    if(creditConfigs.length < 1){
          creditConfigs = CreditConfigFactory(2, user_id)
 
          console.log("create Credit Config");
@@ -31,17 +32,22 @@ async function main(){
     }
 
     const credits = CreditFactory(4, user_id, categories, creditConfigs)
+    const debits = DebitFactory(10, user_id, categories)
     
     console.log("create Credit");
     await prisma.credit.createMany({
         data:credits
     })   
+
+    console.log("Create Debit")
+    await prisma.debit.createMany({
+        data:debits
+    })
 }
 
 
 main()
 .then(async () => {
-    console.log('ok')
     await prisma.$disconnect()
 })
 .catch(async (e) => {

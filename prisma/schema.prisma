@@ -46,7 +46,7 @@ model Debit {
   category_id String
   description String   @db.VarChar(255)
   value       Float
-  dt_purchase String   @db.VarChar(255)
+  dt_purchase DateTime @db.DateTime()
   debit_type  String   @db.VarChar(255)
   category    Category @relation(fields: [category_id], references: [id])
 
