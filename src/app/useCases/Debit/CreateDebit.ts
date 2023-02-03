@@ -1,3 +1,4 @@
+import { parseISO } from 'date-fns';
 import { DebitDTO } from '../../../infra/DTOs/DebitDTO';
 import { Debit } from '../../entities/Debit';
 import { IDebitRepository } from '../../repositories/IDebitRepository';
@@ -11,7 +12,7 @@ export class CreateDebit {
             category_id: request.category_id,
             debit_type: request.debit_type,
             description: request.description,
-            dt_purchase: request.dt_purchase,
+            dt_purchase: parseISO(request.dt_purchase),
             value: request.value,
         });
 

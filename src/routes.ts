@@ -20,5 +20,6 @@ routes.post('/credit/pay', resolver(CreditController.payCredit));
 
 routes.post('/find/credits', resolver(CreditController.findCredits));
 routes.post('/find/months', resolver(CreditController.findDistinctMounts));
+routes.post('/find/debits', resolver(DebitController.getAllDebtis))
 
 export { routes };

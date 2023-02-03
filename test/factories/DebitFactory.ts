@@ -1,3 +1,4 @@
+import { parseISO } from 'date-fns';
 import { Debit } from '../../src/app/entities/Debit';
 
 type Override = Partial<Debit>;
@@ -9,7 +10,7 @@ export function makeDebit(override: Override = {}, id?: string) {
             category_id: 'categoria teste',
             debit_type: 'saida',
             description: 'compra teste',
-            dt_purchase: '2022-22-10',
+            dt_purchase: parseISO('20-10-2020'),
             value: 1223,
             ...override,
         },

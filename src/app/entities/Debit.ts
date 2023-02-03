@@ -5,7 +5,7 @@ interface DebitProps {
     description: string;
     value: number;
     category_id: string;
-    dt_purchase: string;
+    dt_purchase: Date;
     debit_type: string;
 }
 
