@@ -1,14 +1,8 @@
-FROM node:19-alpine3.16
+FROM node:18-alpine3.16
 
-WORKDIR /var/www
+USER node
 
-COPY ./package*.json ./
-
-RUN npm i
-
-COPY ./prisma ./prisma
-
-COPY ./src ./src
+WORKDIR /home/node/app
 
 EXPOSE ${APP_PORT}
 

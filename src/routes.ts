@@ -8,7 +8,7 @@ import { resolver } from './utils/errors/ErrorResolver';
 const routes = Router();
 
 routes.get('/', resolver(async (req:Request, res:Response) => {
-    return res.send('Hello word');
+    return res.send('Controle financeiro');
 }));
 
 routes.post('/category', resolver(CategoryController.create));

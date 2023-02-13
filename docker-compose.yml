@@ -1,30 +1,27 @@
 version: '3.8'
 services:
-  app:
-    build: ./
-    container_name: "finance_service_app"
-    restart: unless-stopped
-    working_dir: /var/www
+  finance-app:
+    build: .
+    env_file: dev.env
+    container_name: "finance_app"
     volumes:
-      - ./:/var/www
+      - ./:/home/node/app
     ports:
       - "${APP_PORT}:${APP_PORT}"
-    env_file:
-      - ./.env
     networks:
       - finance_service
 
-  db:
-    image: mysql:8.0
-    container_name: "finance_service_db"
-    restart: unless-stopped
+  finance-db:
+    image: mysql:8.0-debian
+    env_file: dev.env
+    container_name: "finance_db"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}   
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - ${DB_PORT}:${DB_PORT}
-    env_file:
-      - ./.env
+      - ${DB_PORT}:3306
     volumes:
       - ./docker/sql:/docker-entrypoint-initdb.d
     networks:
