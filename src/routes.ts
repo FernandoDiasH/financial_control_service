@@ -8,6 +8,7 @@ import { resolver } from './utils/errors/ErrorResolver';
 const routes = Router();
 
 routes.get('/', resolver(async (req:Request, res:Response) => {
+    console.log('Log teste');
     return res.send('Controle financeiro');
 }));
 
