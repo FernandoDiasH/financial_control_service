@@ -1,6 +1,6 @@
 import { CreditConfig } from "src/app/entities/CreditConfig";
 import { CreditConfigAbstractRepository } from "src/app/repositories/creditConfigAbstractRepository";
-import { PrismaService } from "../../prisma.service";
+import { PrismaService } from "../prisma.service";
 import { PrismaCreditconfigMapper } from "../mappers/prismaCreditConfigMapper";
 
 

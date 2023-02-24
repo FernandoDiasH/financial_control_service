@@ -1,5 +1,4 @@
 import { parseISO } from 'date-fns';
-import { describe, expect, it } from 'vitest';
 import { makeCategory } from '../../../../test/factories/Category';
 import { makeCreditConfig } from '../../../../test/factories/CreditConfig';
 import { makeCredit } from '../../../../test/factories/CreditFactory';

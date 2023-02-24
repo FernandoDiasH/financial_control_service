@@ -1,6 +1,6 @@
 import { Credit } from "@app/entities/Credit";
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
-import { PrismaService } from "@infra/database/prisma.service";
+import { PrismaService } from "@infra/database/prisma/prisma.service";
 import { PrismaCreditMapper } from "../mappers/prismaCreditMapper";
 
 export class PrismaCreditRepository extends CreditAbstractRepository {

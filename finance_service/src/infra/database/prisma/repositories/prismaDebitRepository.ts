@@ -1,6 +1,6 @@
 import { Debit } from "@app/entities/Debit";
 import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository";
-import { PrismaService } from "@infra/database/prisma.service";
+import { PrismaService } from "@infra/database/prisma/prisma.service";
 import { PrismaDebitMapper } from "../mappers/prismaDebitMapper";
 
 export class PrismaDebitRepository extends DebitAbstractRepository{

@@ -1,5 +1,4 @@
 import { parseISO } from 'date-fns';
-import { describe, expect, it } from 'vitest';
 import { makeCategory } from '../../../../test/factories/Category';
 import { makeCreditConfig } from '../../../../test/factories/CreditConfig';
 import { makeCredit } from '../../../../test/factories/CreditFactory';
@@ -16,10 +15,10 @@ describe('Find all Credit use case', () => {
 
         creditConfigRepository.create(makeCreditConfig());
         categoryRepository.create(makeCategory());
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-10-06') }));
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-10-10') }));
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-10-12') }));
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-11-12') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-10-06') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-10-10') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-10-12') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-11-12') }));
 
         const findCredit = new FindCredits(
             creditRepository,
@@ -45,10 +44,10 @@ describe('Find all Credit use case', () => {
 
         categoryRepository.create(makeCategory());
 
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-11-06') }));
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-11-10') }));
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-11-12') }));
-        creditRepository.save(makeCredit({ dt_due: parseISO('2022-11-12') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-11-06') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-11-10') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-11-12') }));
+        creditRepository.create(makeCredit({ dt_due: parseISO('2022-11-12') }));
 
         const findCredit = new FindCredits(
             creditRepository,

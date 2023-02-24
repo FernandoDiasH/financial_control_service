@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import { makeCategory } from '../../../../test/factories/Category';
 import { InMemoryDebitRepository } from '../../../../test/repositories/InMemoryDebitRepository';
 import { CreateDebit } from './CreateDebit';

@@ -1,8 +1,7 @@
-import { describe, it } from 'vitest';
-import { makeCreditConfig } from '../../../../test/factories/CreditConfig';
-import { InMemoryCreditConfigRepository } from '../../../../test/repositories/InMemoryCreditConfigRepository';
-import { InMemoryCreditRepository } from '../../../../test/repositories/InMemoryCreditRepository';
-import { CreateCredit } from './CreateCredit';
+import { makeCreditConfig } from "@test/factories/CreditConfig";
+import { InMemoryCreditConfigRepository } from "@test/repositories/InMemoryCreditConfigRepository";
+import { InMemoryCreditRepository } from "@test/repositories/InMemoryCreditRepository";
+import { CreateCredit } from "./CreateCredit";
 
 describe('Create Credit use case', () => {
     it('Criar um lancamento de credito ', async () => {

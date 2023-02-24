@@ -8,6 +8,6 @@ export class PayCredit {
 
         credit.pay();
 
-        this.creditRepository.save(credit);
+        await this.creditRepository.save(credit);
     }
 }

@@ -1,15 +1,15 @@
+import { Injectable } from "@nestjs/common";
 import { Category } from "src/app/entities/Category";
 import { CategoryAbstractRepository } from "src/app/repositories/categoryAbstractRepository";
-import { PrismaService } from "../../prisma.service";
+import { PrismaService } from "../prisma.service";
 import { PrismaCategoryMapper } from "../mappers/prismaCategoryMapper";
 
-export class PrismaCategoryRepositoryasync  extends CategoryAbstractRepository {
+@Injectable()
+export class PrismaCategoryRepository  implements CategoryAbstractRepository {
 
     constructor(
         private prisma:PrismaService
-    ){
-        super()
-    }
+    ){}
 
     async create(entitie: Category): Promise<Category> {
 

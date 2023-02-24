@@ -2,6 +2,8 @@ version: '3.8'
 services:
   finance-app-nest:
     build: .
+    depends_on:
+      - finance-db-nest 
     env_file: dev.env
     container_name: "finance_app-nest"
     volumes:
