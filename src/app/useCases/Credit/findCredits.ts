@@ -29,8 +29,7 @@ export class FindCredits {
             throw new Error('Not Found');
         }
 
-        const creditConfig =
-            this.creditConfigRepository.findAllByUserID(user_id);
+        const creditConfig = this.creditConfigRepository.findAllByUserID(user_id);
         const categories = this.categoryRepository.findAllByUserID(user_id);
 
         return {

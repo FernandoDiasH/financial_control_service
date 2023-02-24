@@ -8,7 +8,8 @@ import { resolver } from './utils/errors/ErrorResolver';
 const routes = Router();
 
 routes.get('/', resolver(async (req:Request, res:Response) => {
-    return res.send('Hello word');
+    console.log('Log teste');
+    return res.send('Controle financeiro');
 }));
 
 routes.post('/category', resolver(CategoryController.create));
@@ -20,5 +21,6 @@ routes.post('/credit/pay', resolver(CreditController.payCredit));
 
 routes.post('/find/credits', resolver(CreditController.findCredits));
 routes.post('/find/months', resolver(CreditController.findDistinctMounts));
+routes.post('/find/debits', resolver(DebitController.getAllDebtis))
 
 export { routes };
