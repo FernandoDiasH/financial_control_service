@@ -5,6 +5,7 @@ import { CategoryAbstractRepository } from "@app/repositories/categoryAbstractRe
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
 import { CreditConfigAbstractRepository } from "@app/repositories/creditConfigAbstractRepository";
 import { FindCreditsDTO } from "@infra/http/DTOs/FindCreditDTO";
+import { formatISO, parseISO, setDate } from "date-fns";
 
 export class FindCredits {
     private credits: Credit[] = [];
@@ -12,28 +13,33 @@ export class FindCredits {
     private category: Category[] = [];
 
     constructor(
-        private creditReposytory: CreditAbstractRepository,
+        private creditRepository: CreditAbstractRepository,
         private categoryRepository: CategoryAbstractRepository,
         private creditConfigRepository: CreditConfigAbstractRepository
     ) {}
 
     async execute(request: FindCreditsDTO) {
-        const { user_id, end_dt, start_dt } = request;
-        const credits = this.creditReposytory.findCreditsByUserIdAndMonth(
+        let { user_id, end_dt, start_dt } = request;
+
+        if(!start_dt){
+            start_dt = setDate(new Date(), 1)
+        }
+
+        if(!end_dt){
+            end_dt = parseISO(formatISO(new Date ()))
+        }
+        
+        let credits = this.creditRepository.findCreditsByUserIdAndMonth(
             user_id,
             start_dt,
             end_dt
         );
 
-        if (!this.credits) {
-            throw new Error('Not Found');
-        }
-
         const creditConfig = this.creditConfigRepository.findManyByUserId(user_id);
         const categories = this.categoryRepository.findManyByUserId(user_id);
 
         return {
-            credits: await credits,
+            credits:  await credits,
             creditConfig: await creditConfig,
             categories: await categories,
         };

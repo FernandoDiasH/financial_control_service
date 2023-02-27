@@ -2,11 +2,14 @@ import { makeCategory } from '../../../../test/factories/Category';
 import { InMemoryDebitRepository } from '../../../../test/repositories/InMemoryDebitRepository';
 import { CreateDebit } from './CreateDebit';
 
-describe('Create debit', () => {
-    it('deveria poder criar um lancamento de debito', async () => {
-        const debitReposytory = new InMemoryDebitRepository();
-        const createDebit = new CreateDebit(debitReposytory);
+const debitReposytory = new InMemoryDebitRepository();
+const createDebit = new CreateDebit(debitReposytory);
 
+
+describe('Create debit', () => {
+    
+    it('deveria poder criar um lancamento de debito', async () => {
+        
         const category = makeCategory();
 
         const debit = await createDebit.execute({

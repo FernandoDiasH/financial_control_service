@@ -7,9 +7,7 @@ import { InMemoryCreditConfigRepository } from '../../../../test/repositories/In
 import { InMemoryCreditRepository } from '../../../../test/repositories/InMemoryCreditRepository';
 import { FindDistincstMonts } from './findDistinctsMouth';
 
-describe('Find all distincts dates', () => {
-    it('Deveria trazer todas os meses de credito lancado', async () => {
-        const creditRepository = new InMemoryCreditRepository();
+const creditRepository = new InMemoryCreditRepository();
         const categoryRepository = new InMemoryCategoryRepository();
         const creditConfigRepository = new InMemoryCreditConfigRepository();
 
@@ -23,6 +21,9 @@ describe('Find all distincts dates', () => {
 
         const findMonths = new FindDistincstMonts(creditRepository);
 
+describe('Find all distincts dates', () => {
+    it('Deveria trazer todas os meses de credito lancado', async () => {
+        
         const months = await findMonths.execute('usuario-teste');
 
         expect(months).toBeTruthy();

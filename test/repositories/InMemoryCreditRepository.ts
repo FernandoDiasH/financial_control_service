@@ -51,8 +51,8 @@ export class InMemoryCreditRepository implements ICreditRepository {
         const credit = this.credits.filter((credit) => {
             if (
                 credit.user_id == user_id &&
-                start_dt < credit.dt_due &&
-                end_dt > credit.dt_due
+                start_dt <= credit.dt_due &&
+                end_dt >= credit.dt_due
             ) {
                 return credit;
             }
