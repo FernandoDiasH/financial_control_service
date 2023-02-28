@@ -14,12 +14,10 @@ export function DebitFactory(qtd:number, user_id:string, categories:Category[]):
 }
 
 function makeDebit(user_id:string, category_id:string):Debit{
-    const debit_type = ["Entrada", "Saida"]
     return {
         id:randomUUID(),
         user_id:user_id,
         category_id:category_id,
-        debit_type:faker.helpers.arrayElement(debit_type),
         description:faker.commerce.productName(),
         dt_purchase:faker.date.past(5),
         value:faker.datatype.number({min:1, max:10000}),

@@ -1,7 +1,37 @@
-import { Category } from '@prisma/client'
+import { Category, TypeCategory } from '@prisma/client'
 import { randomUUID } from "crypto"
 
-const categories = ["Remuneração", "Conta fixa","Gastos extras", "Mercado", "Comida", "Moto"]
+interface category {
+    description:string,
+    type: TypeCategory
+}
+
+const categories:category[] = [
+    {
+        description:"Remuneração",
+        type:'Entrada'
+    },
+    {
+        description:"Conta fixa",
+        type:'Saida'
+    },
+    {
+        description:"Gastos extras",
+        type:'Saida'
+    },
+    {
+        description:"Mercado",
+        type:'Saida'
+    },
+    {
+        description:"Comida",
+        type:'Saida'
+    },
+    {
+        description:"Moto",
+        type:'Saida'
+    },
+]
 
 
 export function makeCategories(user_id:string){
@@ -11,11 +41,12 @@ export function makeCategories(user_id:string){
 }
 
 
-function makeCategory(user_id:string, categoria:string):Category{
+function makeCategory(user_id:string, categoria:category):Category{
     return {
         id:randomUUID(),
         user_id:user_id,
-        description:categoria
+        description:categoria.description,
+        type_catgory:categoria.type
     }
 }
 
