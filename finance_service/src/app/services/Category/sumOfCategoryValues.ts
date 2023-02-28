@@ -7,7 +7,7 @@ import { DebitAbstractRepository } from "@app/repositories/debitAbstractReposito
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-class SumOfCategoryValues {
+export class SumOfCategoryValues {
 
     protected debits:Debit[]
     protected creditis:Credit[]
@@ -22,33 +22,40 @@ class SumOfCategoryValues {
     async execute(userID: string){
 
         this.categories = await this.categoryRepository.findManyByUserId(userID)
-        
         this.debits = await this.debitRepository.findManyByUserId(userID)
         this.creditis = await this.creditRepository.findManyByUserId(userID)
 
         let sumOfCategory = {}
 
+        let entradaTotal = 0
+        let saidaTotal = 0
+
         for (let category of this.categories){
-            let entrada = 0
-            let saida = 0
+            let valor = 0
 
-            this.debits.forEach((debit, index)=>{
-                // if(debit.debit_type === "Entrada"){
-                //     entrada += debit.value
-                    
-                // }
+            this.debits.forEach((debit)=>{
+                if(debit.category_id === category.id){
+                    valor =+ debit.value
+                } 
 
-                // if(debit.debit_type === 'Saida'){
-                //     saida += debit.value
-                // }   
+                if(debit.category_id === category.id && category._type == 'Entrada'){
+                    entradaTotal += debit.value
+                }
+
+                if(debit.category_id === category.id && category._type == 'Saida'){
+                    saidaTotal += debit.value
+                }
             })
 
             sumOfCategory[category._descripiton] = {
-                entrada,
-                saida
+                [category._type]:valor,
             } 
         }
-    
+
+        // sumOfCategory = {
+        //     entrada:entradaTotal,
+        //     saida:saidaTotal
+        // }
         console.log(sumOfCategory)
     }
 }

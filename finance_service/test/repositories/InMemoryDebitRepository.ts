@@ -26,7 +26,8 @@ export class InMemoryDebitRepository implements DebitAbstractRepository {
     }
 
     async findManyByUserId(userId: string): Promise<[] | Debit[]> {
-        throw new Error("Method not implemented.");
+        let debits = this.debits.filter(debit => userId === debit.user_id)
+        return debits
     }
     
 }

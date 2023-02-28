@@ -73,6 +73,9 @@ export class InMemoryCreditRepository implements CreditAbstractRepository {
     }
 
     async findManyByUserId(userId: string): Promise<[] | Credit[]> {
-        throw new Error("Method not implemented.");
+
+        const credits = this.credits.filter(credit => userId == credit.user_id)
+
+        return credits;
     }
 }
