@@ -33,14 +33,14 @@ class SumOfCategoryValues {
             let saida = 0
 
             this.debits.forEach((debit, index)=>{
-                if(debit.debit_type === "Entrada"){
-                    entrada += debit.value
+                // if(debit.debit_type === "Entrada"){
+                //     entrada += debit.value
                     
-                }
+                // }
 
-                if(debit.debit_type === 'Saida'){
-                    saida += debit.value
-                }   
+                // if(debit.debit_type === 'Saida'){
+                //     saida += debit.value
+                // }   
             })
 
             sumOfCategory[category._descripiton] = {

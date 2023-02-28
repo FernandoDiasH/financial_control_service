@@ -14,6 +14,7 @@ export class CreateCategory {
         const category = new Category({
             user_id: request.user_id,
             description: request.description,
+            type:request.type
         });
         
         this.categoryRepository.create(category);

@@ -12,6 +12,7 @@ describe('Create Category use case', () => {
         const categoria = await createCategoryUseCase.execute({
             user_id: randomUUID(),
             description: 'Categoria teste',
+            type:"Saida"
         });
 
         expect(inMemoryCategoryRepository.categories).toHaveLength(1);

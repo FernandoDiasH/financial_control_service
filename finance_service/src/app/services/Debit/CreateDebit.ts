@@ -10,7 +10,6 @@ export class CreateDebit {
         const debit = new Debit({
             user_id: request.user_id,
             category_id: request.category_id,
-            debit_type: request.debit_type,
             description: request.description,
             dt_purchase: parseISO(request.dt_purchase),
             value: request.value,
