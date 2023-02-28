@@ -8,7 +8,6 @@ export function makeDebit(override: Override = {}, id?: string) {
         {
             user_id: 'usuario-teste',
             category_id: 'categoria teste',
-            debit_type: 'saida',
             description: 'compra teste',
             dt_purchase: parseISO('20-10-2020'),
             value: 1223,

@@ -42,7 +42,7 @@ model Category {
   id          String   @id @default(uuid())
   user_id     String   @db.Text
   description String   @db.VarChar(255)
-  type_catgory TypeCategory
+  type_category TypeCategory
   credit      Credit[]
   debit       Debit[]
 }

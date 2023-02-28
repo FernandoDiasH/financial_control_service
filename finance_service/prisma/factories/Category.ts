@@ -46,7 +46,7 @@ function makeCategory(user_id:string, categoria:category):Category{
         id:randomUUID(),
         user_id:user_id,
         description:categoria.description,
-        type_catgory:categoria.type
+        type_category:categoria.type
     }
 }
 
