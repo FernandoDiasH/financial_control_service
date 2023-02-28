@@ -9,7 +9,6 @@ export class PrismaDebitMapper {
             category_id: debit.category_id,
             description: debit.description,
             value: debit.value,
-            debit_type: debit.debit_type,
             dt_purchase: debit.dt_purchase,
         };
     }
@@ -19,7 +18,6 @@ export class PrismaDebitMapper {
             user_id: prismaDebit.user_id,
             description: prismaDebit.description,
             category_id: prismaDebit.category_id,
-            debit_type:prismaDebit.debit_type,
             dt_purchase: prismaDebit.dt_purchase,
             value:prismaDebit.value
         }, prismaDebit.id)

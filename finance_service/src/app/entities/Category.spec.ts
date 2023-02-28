@@ -5,6 +5,7 @@ describe('Entitie Category', () => {
         const categoria = new Category({
             user_id: 'user_id_teste',
             description: 'descricao teste',
+            type:"Entrada"
         });
         expect(categoria).toBeInstanceOf(Category);
         expect(typeof categoria.id).toBe('string');

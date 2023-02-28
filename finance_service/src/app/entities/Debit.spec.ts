@@ -6,7 +6,6 @@ describe('Debit', () => {
         const debit = new Debit({
             user_id: 'usuario teste',
             category_id: 'categoria teste',
-            debit_type: 'saida',
             description: 'compra teste',
             dt_purchase: parseISO('2022-22-10'),
             value: 1223,

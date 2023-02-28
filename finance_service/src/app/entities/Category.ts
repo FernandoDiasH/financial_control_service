@@ -3,7 +3,10 @@ import { randomUUID } from 'node:crypto';
 export interface CategoryProps {
     user_id: string;
     description: string;
+    type:TypeCategory
 }
+
+export type TypeCategory = 'Entrada' | 'Saida'
 
 export class Category {
     private _id: string;
@@ -29,6 +32,10 @@ export class Category {
 
     get _descripiton() {
         return this.props.description;
+    }
+
+    get _type(){
+        return this.props.type
     }
 }
 

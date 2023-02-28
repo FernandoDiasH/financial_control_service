@@ -14,10 +14,11 @@ export class  CategoryController {
     @Post()
     async create(@Body() req: CreateCategoryDTO) {
 
-        const { user_id, description } = req;
+        const { user_id, description, type } = req;
         this.createCategory.execute({
             user_id,
-            description
+            description,
+            type
         })
 
 
