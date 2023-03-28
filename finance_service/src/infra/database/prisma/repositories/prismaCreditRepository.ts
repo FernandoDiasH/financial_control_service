@@ -1,18 +1,12 @@
 import { Credit } from "@app/entities/Credit";
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
-import { PrismaService } from "@infra/database/prisma/prisma.service";
 import { PrismaCreditMapper } from "../mappers/prismaCreditMapper";
+import { Repository } from "./repository";
 
-export class PrismaCreditRepository extends CreditAbstractRepository {
+export class PrismaCreditRepository extends Repository implements CreditAbstractRepository {
 
-    constructor(
-        private prisma:PrismaService
-    ){
-        super()
-    }
-    
     async countValueCredits(user_id: string, credit_config_id: string): Promise<number> {
-       
+
         const value = await this.prisma.credit.aggregate({
             _sum: {
                 installment_value: true,
@@ -27,7 +21,7 @@ export class PrismaCreditRepository extends CreditAbstractRepository {
         if (value._sum.installment_value == null) {
             return 0;
         }
-    
+
         return value._sum.installment_value;
     }
 
@@ -68,7 +62,7 @@ export class PrismaCreditRepository extends CreditAbstractRepository {
     async create(entitie: Credit): Promise<Credit> {
         const raw = PrismaCreditMapper.toPrisma(entitie);
 
-        await this.prisma.credit.create({ 
+        await this.prisma.credit.create({
             data: raw,
         });
 
@@ -104,5 +98,5 @@ export class PrismaCreditRepository extends CreditAbstractRepository {
     async findManyByUserId(userId: string): Promise<[] | Credit[]> {
         throw new Error("Method not implemented.");
     }
- 
+
 }

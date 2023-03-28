@@ -1,15 +1,10 @@
 import { CreditConfig } from "src/app/entities/CreditConfig";
 import { CreditConfigAbstractRepository } from "src/app/repositories/creditConfigAbstractRepository";
-import { PrismaService } from "../prisma.service";
 import { PrismaCreditconfigMapper } from "../mappers/prismaCreditConfigMapper";
+import { Repository } from "./repository";
 
 
-export class PrismaCreditConfigRepository extends CreditConfigAbstractRepository{
-    constructor(
-        private prisma:PrismaService
-    ){
-        super()
-    }
+export class PrismaCreditConfigRepository extends Repository implements CreditConfigAbstractRepository {
 
     async create(entitie: CreditConfig): Promise<CreditConfig> {
         const raw = PrismaCreditconfigMapper.toPrisma(entitie);
@@ -30,7 +25,7 @@ export class PrismaCreditConfigRepository extends CreditConfigAbstractRepository
     }
 
     async findById(creditConfigID: string): Promise<CreditConfig> {
-       const data = await this.prisma.creditConfig.findUniqueOrThrow({
+        const data = await this.prisma.creditConfig.findUniqueOrThrow({
             where: {
                 id: creditConfigID,
             },
@@ -41,11 +36,11 @@ export class PrismaCreditConfigRepository extends CreditConfigAbstractRepository
 
     async findManyByUserId(userId: string): Promise<[] | CreditConfig[]> {
         const data = await this.prisma.creditConfig.findMany({
-                where: {
-                    user_id: userId,
-                },
-            });
-        
+            where: {
+                user_id: userId,
+            },
+        });
+
         return data.map((creditConfig) =>
             PrismaCreditconfigMapper.toDomain(creditConfig)
         );

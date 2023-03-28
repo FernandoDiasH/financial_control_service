@@ -5,9 +5,9 @@ export class PrismaCategoryMapper {
     static toPrisma(category: Category) {
         return {
             id: category.id,
-            user_id: category._user_id,
-            description: category._descripiton,
-            type_category:category._type
+            user_id: category.user_id,
+            description: category.description,
+            type_category: category.type
         };
     }
 
@@ -16,7 +16,7 @@ export class PrismaCategoryMapper {
             {
                 user_id: category.user_id,
                 description: category.description,
-                type:category.type_category
+                type: category.type_category
             },
             category.id
         );

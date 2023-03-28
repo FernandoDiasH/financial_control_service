@@ -7,16 +7,16 @@ type CreateCategoryResponse = Category;
 
 @Injectable()
 export class CreateCategory {
-    constructor(private categoryRepository: CategoryAbstractRepository) {}
+    constructor(private categoryRepository: CategoryAbstractRepository) { }
 
     async execute(request: CreateCategoryDTO): Promise<CreateCategoryResponse> {
-        
+
         const category = new Category({
             user_id: request.user_id,
             description: request.description,
-            type:request.type
+            type: request.type
         });
-        
+
         this.categoryRepository.create(category);
         return category;
     }

@@ -24,7 +24,7 @@ export class CreditViewModel {
                 descricao: credit.description,
                 valor_parcela: credit.installment_value,
                 status: credit.credit_status,
-                categoria: category?._descripiton,
+                categoria: category?.description,
                 banco: creditConfig?.description,
             };
         });

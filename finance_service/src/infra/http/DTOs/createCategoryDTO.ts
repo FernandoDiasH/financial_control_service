@@ -1,14 +1,18 @@
 import { TypeCategory } from '@app/entities/Category';
-import {IsUUID, IsString, IsNotEmpty, IsEnum} from 'class-validator'
+import { IsUUID, IsString, IsNotEmpty, IsEnum, IsInstance, } from 'class-validator'
 
 export interface CreateCategoryDTO {
     user_id: string;
     description: string;
-    type:TypeCategory
+    type: TypeCategory
 }
 
+enum typeEnum {
+    Saida = "Saida",
+    Entrada = "Entrada"
+}
 export class CreateCategoryDTO {
-    
+
     @IsNotEmpty()
     @IsUUID()
     user_id: string;
@@ -19,5 +23,6 @@ export class CreateCategoryDTO {
 
     @IsString()
     @IsNotEmpty()
-    type:TypeCategory
+    @IsEnum(typeEnum)
+    type: TypeCategory
 }
