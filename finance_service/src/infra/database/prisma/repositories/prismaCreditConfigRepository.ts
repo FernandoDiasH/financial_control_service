@@ -1,9 +1,10 @@
+import { Injectable } from "@nestjs/common";
 import { CreditConfig } from "src/app/entities/CreditConfig";
 import { CreditConfigAbstractRepository } from "src/app/repositories/creditConfigAbstractRepository";
 import { PrismaCreditconfigMapper } from "../mappers/prismaCreditConfigMapper";
 import { Repository } from "./repository";
 
-
+@Injectable()
 export class PrismaCreditConfigRepository extends Repository implements CreditConfigAbstractRepository {
 
     async create(entitie: CreditConfig): Promise<CreditConfig> {
