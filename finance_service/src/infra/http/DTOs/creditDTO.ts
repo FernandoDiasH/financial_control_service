@@ -1,5 +1,3 @@
-
-
 export class CreateCreditDTO {
     user_id: string;
     credit_config_id: string;

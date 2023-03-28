@@ -1,6 +1,8 @@
 import { CreateCategory } from "@app/services/Category/CreateCategory";
 import { CreateCredit } from "@app/services/Credit/CreateCredit";
 import { FindCredits } from "@app/services/Credit/findCredits";
+import { FindDistincstMonts } from "@app/services/Credit/findDistinctsMouth";
+import { PayCredit } from "@app/services/Credit/PayCredit";
 import { GetDebits } from "@app/services/Debit/GetDebits";
 import { DatabaseModule } from "@infra/database/database.module";
 import { Module } from "@nestjs/common";
@@ -21,7 +23,9 @@ import { DebitController } from "./controllers/debit.controller";
         CreateCategory,
         GetDebits,
         CreateCredit,
-        FindCredits
+        FindCredits,
+        FindDistincstMonts,
+        PayCredit
     ],
 })
 export class HttpModule { } 

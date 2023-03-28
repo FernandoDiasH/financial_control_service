@@ -1,5 +1,7 @@
 import { CreateCredit } from "@app/services/Credit/CreateCredit";
 import { FindCredits } from "@app/services/Credit/findCredits";
+import { FindDistincstMonts } from "@app/services/Credit/findDistinctsMouth";
+import { PayCredit } from "@app/services/Credit/PayCredit";
 import { Body, Controller, Post } from "@nestjs/common";
 import { parseISO } from "date-fns";
 import { CreateCreditDTO, FindCreditsDTO } from "../DTOs/creditDTO";
@@ -10,7 +12,9 @@ import { CreditViewModel } from "../view-models/credit-view-model";
 export class CreditController {
     constructor(
         private createCredit: CreateCredit,
-        private findCredits: FindCredits
+        private findCredits: FindCredits,
+        private findDistinctMoths: FindDistincstMonts,
+        private payCredit: PayCredit
     ) { }
 
     @Post()
@@ -41,5 +45,16 @@ export class CreditController {
         })
 
         return CreditViewModel.toHTTP({ credits, categories, creditConfig })
+    }
+
+    @Post('months')
+    async getAllDistinctMonths(@Body() req) {
+
+        return await this.findDistinctMoths.execute(req.user_id)
+    }
+
+    @Post('pay')
+    async payCredits(@Body() req) {
+        this.payCredit.execute(req.credit_id)
     }
 }
