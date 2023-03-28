@@ -1,5 +1,4 @@
 import { randomUUID } from 'crypto';
-import { describe, expect, it } from 'vitest';
 import { CreditConfig } from './CreditConfig';
 
 describe('Credit Config', () => {
