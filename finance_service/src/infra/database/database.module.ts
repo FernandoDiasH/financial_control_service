@@ -6,6 +6,7 @@ import { Module } from "@nestjs/common";
 import { PrismaService } from "./prisma/prisma.service";
 import { PrismaCategoryRepository } from "./prisma/repositories/prismaCategoryRepository";
 import { PrismaCreditConfigRepository } from "./prisma/repositories/prismaCreditConfigRepository";
+import { PrismaCreditRepository } from "./prisma/repositories/prismaCreditRepository";
 import { PrismaDebitRepository } from "./prisma/repositories/prismaDebitRepository";
 
 @Module({
@@ -22,12 +23,17 @@ import { PrismaDebitRepository } from "./prisma/repositories/prismaDebitReposito
     {
       provide: CreditConfigAbstractRepository,
       useClass: PrismaCreditConfigRepository
+    },
+    {
+      provide: CreditAbstractRepository,
+      useClass: PrismaCreditRepository
     }
   ],
   exports: [
     CategoryAbstractRepository,
     DebitAbstractRepository,
-    CreditConfigAbstractRepository
+    CreditConfigAbstractRepository,
+    CreditAbstractRepository
   ],
 })
 export class DatabaseModule { }

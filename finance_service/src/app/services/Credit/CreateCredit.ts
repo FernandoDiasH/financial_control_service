@@ -3,8 +3,10 @@ import { CreditConfig } from "@app/entities/CreditConfig";
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
 import { CreditConfigAbstractRepository } from "@app/repositories/creditConfigAbstractRepository";
 import { CreateCreditDTO } from "@infra/http/DTOs/createCreditDTO";
+import { Injectable } from "@nestjs/common";
 import { addMonths, parseISO } from "date-fns";
 
+@Injectable()
 export class CreateCredit {
     private creditConfig: CreditConfig;
     private date_purchase: Date;
@@ -12,7 +14,7 @@ export class CreateCredit {
     constructor(
         private creditConfigRepository: CreditConfigAbstractRepository,
         private creditRepository: CreditAbstractRepository
-    ) {}
+    ) { }
 
     async execute(request: CreateCreditDTO) {
         this.date_purchase = parseISO(request.data_compra);
@@ -57,7 +59,7 @@ export class CreateCredit {
                 credit_config_id: request.credit_config_id,
             });
 
-            promisses.push(this.creditRepository.save(credit));
+            promisses.push(this.creditRepository.create(credit));
         }
 
         Promise.all(promisses);

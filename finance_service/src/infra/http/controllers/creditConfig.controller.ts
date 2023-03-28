@@ -5,7 +5,6 @@ import { CreateCreditConfigDTO } from "../DTOs/CreditConfigDTO";
 
 
 
-@Injectable()
 @Controller('credit-config')
 export class CreditConfigController {
 

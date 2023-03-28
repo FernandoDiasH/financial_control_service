@@ -1,8 +1,10 @@
 import { Credit } from "@app/entities/Credit";
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
+import { Injectable } from "@nestjs/common";
 import { PrismaCreditMapper } from "../mappers/prismaCreditMapper";
 import { Repository } from "./repository";
 
+@Injectable()
 export class PrismaCreditRepository extends Repository implements CreditAbstractRepository {
 
     async countValueCredits(user_id: string, credit_config_id: string): Promise<number> {
@@ -26,6 +28,7 @@ export class PrismaCreditRepository extends Repository implements CreditAbstract
     }
 
     async findCreditsByUserIdAndMonth(user_id: string, start_dt: Date, end_dt: Date): Promise<Credit[]> {
+
         const raw = await this.prisma.credit.findMany({
             where: {
                 user_id: user_id,
