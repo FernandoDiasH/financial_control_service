@@ -6,4 +6,4 @@ WORKDIR /home/node/app
 
 EXPOSE ${APP_PORT}
 
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start"]

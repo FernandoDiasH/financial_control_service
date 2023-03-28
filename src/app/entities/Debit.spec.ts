@@ -1,4 +1,4 @@
-import { parseISO } from 'date-fns';
+import { describe, expect, it } from 'vitest';
 import { Debit } from './Debit';
 
 describe('Debit', () => {
@@ -6,8 +6,9 @@ describe('Debit', () => {
         const debit = new Debit({
             user_id: 'usuario teste',
             category_id: 'categoria teste',
+            debit_type: 'saida',
             description: 'compra teste',
-            dt_purchase: parseISO('2022-22-10'),
+            dt_purchase: '2022-22-10',
             value: 1223,
         });
 

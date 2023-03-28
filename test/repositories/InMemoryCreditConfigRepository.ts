@@ -1,24 +1,17 @@
-import { CreditConfig } from "@app/entities/CreditConfig";
-import { CreditConfigAbstractRepository } from "@app/repositories/creditConfigAbstractRepository";
+import { CreditConfig } from '../../src/app/entities/CreditConfig';
+import { ICreditConfiRepository } from '../../src/app/repositories/ICreditConfigRepository';
 
-export class InMemoryCreditConfigRepository implements CreditConfigAbstractRepository {
+export class InMemoryCreditConfigRepository implements ICreditConfiRepository {
     public creditConfigs: CreditConfig[] = [];
 
-    async create(entitie: CreditConfig): Promise<CreditConfig> {
-       this.creditConfigs.push(entitie);
-       return entitie;
-    }
-    
-    async save(entitie: CreditConfig): Promise<CreditConfig> {
-        throw new Error("Method not implemented.");
+    async create(data: CreditConfig): Promise<void> {
+        this.creditConfigs.push(data);
     }
 
-    async delete(userID: string, entititeId: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
-
-    async findById(entititeId: string): Promise<CreditConfig> {
-        const creditConifg = this.creditConfigs.find((credit) => credit.id == entititeId);
+    async findByID(creditID: string): Promise<CreditConfig> {
+        const creditConifg = this.creditConfigs.find(
+            (credit) => credit.id == creditID
+        );
 
         if (!creditConifg) {
             throw new Error('Nenhuma configuracao de credito foi encontrada');
@@ -27,9 +20,9 @@ export class InMemoryCreditConfigRepository implements CreditConfigAbstractRepos
         return creditConifg;
     }
 
-    async findManyByUserId(userId: string): Promise<[] | CreditConfig[]> {
+    async findAllByUserID(user_id: string): Promise<CreditConfig[]> {
         const data = this.creditConfigs.filter(
-            (config) => config.user_id == userId
+            (config) => config.user_id == user_id
         );
 
         if (data) {

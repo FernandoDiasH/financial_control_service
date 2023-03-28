@@ -6,6 +6,7 @@ interface DebitProps {
     value: number;
     category_id: string;
     dt_purchase: Date;
+    debit_type: string;
 }
 
 export class Debit {
@@ -35,5 +36,8 @@ export class Debit {
     }
     get dt_purchase() {
         return this.props.dt_purchase;
+    }
+    get debit_type() {
+        return this.props.debit_type;
     }
 }

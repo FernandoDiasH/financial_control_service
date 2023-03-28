@@ -33,16 +33,10 @@ model Credit {
   @@index([category_id], map: "Credit_category_id_fkey")
 }
 
-enum TypeCategory{
-  Entrada 
-  Saida 
-}
-
 model Category {
   id          String   @id @default(uuid())
   user_id     String   @db.Text
   description String   @db.VarChar(255)
-  type_category TypeCategory
   credit      Credit[]
   debit       Debit[]
 }
@@ -54,6 +48,7 @@ model Debit {
   description String   @db.VarChar(255)
   value       Float
   dt_purchase DateTime @db.DateTime()
+  debit_type  String   @db.VarChar(255)
   category    Category @relation(fields: [category_id], references: [id])
 
   @@index([category_id], map: "Debit_category_id_fkey")

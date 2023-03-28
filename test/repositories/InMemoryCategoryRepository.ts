@@ -1,24 +1,17 @@
-import { Category } from "@app/entities/Category";
-import { CategoryAbstractRepository } from "@app/repositories/categoryAbstractRepository";
+import { Category } from '../../src/app/entities/Category';
+import { ICategoryRepository } from '../../src/app/repositories/ICategoryRepository';
 
-export class InMemoryCategoryRepository implements CategoryAbstractRepository {
+export class InMemoryCategoryRepository implements ICategoryRepository {
     public categories: Category[] = [];
 
-    async create(entitie: Category): Promise<Category> {
-        this.categories.push(entitie);
-        return entitie;
+    async create(data: Category): Promise<void> {
+        this.categories.push(data);
     }
 
-    async save(entitie: Category): Promise<Category> {
-        throw new Error("Method not implemented.");
-    }
-
-    async delete(userID: string, entititeId: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
-    }
-
-    async findById(entititeId: string): Promise<Category> {
-        const categoria = this.categories.find((categoria) => categoria.id == entititeId);
+    async findById(id: string, user_id: string): Promise<Category> {
+        const categoria = this.categories.find(
+            (categoria) => categoria.id == id && categoria._user_id === user_id
+        );
 
         if (!categoria) {
             throw new Error('Nenhuma categoria foi encontrada');
@@ -26,9 +19,9 @@ export class InMemoryCategoryRepository implements CategoryAbstractRepository {
         return categoria;
     }
 
-    async findManyByUserId(userId: string): Promise<[] | Category[]> {
+    async findAllByUserID(user_id: string): Promise<Category[]> {
         const data = this.categories.filter(
-            (category) => category.user_id == userId
+            (category) => category._user_id == user_id
         );
 
         if (data) {
