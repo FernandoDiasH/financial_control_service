@@ -8,7 +8,7 @@ export class InMemoryCategoryRepository implements CategoryAbstractRepository {
         this.categories.push(entitie);
         return entitie;
     }
-    
+
     async save(entitie: Category): Promise<Category> {
         throw new Error("Method not implemented.");
     }
@@ -18,7 +18,7 @@ export class InMemoryCategoryRepository implements CategoryAbstractRepository {
     }
 
     async findById(entititeId: string): Promise<Category> {
-        const categoria = this.categories.find((categoria) => categoria.id == entititeId );
+        const categoria = this.categories.find((categoria) => categoria.id == entititeId);
 
         if (!categoria) {
             throw new Error('Nenhuma categoria foi encontrada');
@@ -28,7 +28,7 @@ export class InMemoryCategoryRepository implements CategoryAbstractRepository {
 
     async findManyByUserId(userId: string): Promise<[] | Category[]> {
         const data = this.categories.filter(
-            (category) => category._user_id == userId
+            (category) => category.user_id == userId
         );
 
         if (data) {

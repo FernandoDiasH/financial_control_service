@@ -56,6 +56,5 @@ export class SumOfCategoryValues {
         //     entrada:entradaTotal,
         //     saida:saidaTotal
         // }
-        console.log(sumOfCategory)
     }
 }

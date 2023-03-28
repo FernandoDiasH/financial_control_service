@@ -13,33 +13,33 @@ let categoryRepository = new InMemoryCategoryRepository();
 let debitRepository = new InMemoryDebitRepository()
 
 creditRepository.create(makeCredit({
-    installment_value:1200,
+    installment_value: 1200,
     category_id: 'categoria1'
 }))
 
 creditRepository.create(makeCredit({
-    installment_value:1000,
+    installment_value: 1000,
     category_id: 'categoria2'
 }))
 
 creditRepository.create(makeCredit({
-    installment_value:200,
-    category_id: 'categoria3' 
+    installment_value: 200,
+    category_id: 'categoria3'
 }))
 
 categoryRepository.create(makeCategory({
-    _type:'Entrada',
-    _descripiton:'remuneracao'
+    type: 'Entrada',
+    description: 'remuneracao'
 }, 'categoria1'))
 
 categoryRepository.create(makeCategory({
-    _type:'Saida',
-    _descripiton:'Conta fixa'
+    type: 'Saida',
+    description: 'Conta fixa'
 }, 'categoria2'))
 
 categoryRepository.create(makeCategory({
-    _type:'Saida',
-    _descripiton:'gasto extra'
+    type: 'Saida',
+    description: 'gasto extra'
 }, 'categoria3'))
 
 
@@ -51,15 +51,15 @@ debitRepository.create(makeDebit())
 
 
 let sumOfCategoryValues = new SumOfCategoryValues(
-    creditRepository, 
-    categoryRepository, 
+    creditRepository,
+    categoryRepository,
     debitRepository,
-    )
+)
 
 
 
-describe('Soma de todos os debitos por categoria', ()=>{
-    it('Deveria trazer a soma de todos os debitos por categoria', ()=>{
+describe('Soma de todos os debitos por categoria', () => {
+    it('Deveria trazer a soma de todos os debitos por categoria', () => {
 
         sumOfCategoryValues.execute('usuario-teste')
 
@@ -71,21 +71,21 @@ describe('Soma de todos os debitos por categoria', ()=>{
 
 
         let sumCategories = {
-            "entrada":2500,
+            "entrada": 2500,
             "saida": 2900,
             "conta fixa": 2000,
-            "moto":600,
-            "gasto extras":300
+            "moto": 600,
+            "gasto extras": 300
         }
 
 
 
         expect(sumCategories).toEqual({
-            "entrada":2500,
+            "entrada": 2500,
             "saida": 2900,
             "conta fixa": 2000,
-            "moto":600,
-            "gasto extras":300
+            "moto": 600,
+            "gasto extras": 300
         })
     })
 })
