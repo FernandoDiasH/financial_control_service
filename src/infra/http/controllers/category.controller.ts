@@ -1,7 +1,7 @@
 import { CategoryAbstractRepository } from "@app/repositories/categoryAbstractRepository";
 import { CreateCategory } from "@app/services/Category/CreateCategory";
-import { Body, Controller, Post } from "@nestjs/common";
-import { CreateCategoryDTO } from "../DTOs/createCategoryDTO";
+import { Body, Controller, Get, Post } from "@nestjs/common";
+import { CreateCategoryDTO } from "../DTOs/categoryDTO";
 
 @Controller('/category')
 export class CategoryController {
@@ -22,7 +22,7 @@ export class CategoryController {
         })
     }
 
-    @Post('find')
+    @Get('find')
     async findAllCategory(@Body() req) {
 
         let categories = await this.categoryRepository.findManyByUserId(req.user_id)

@@ -1,6 +1,6 @@
 import { Category } from "@app/entities/Category";
 import { CategoryAbstractRepository } from "@app/repositories/categoryAbstractRepository";
-import { CreateCategoryDTO } from "@infra/http/DTOs/createCategoryDTO";
+import { CreateCategoryPropsDTO } from "@infra/http/DTOs/categoryDTO";
 import { Injectable } from "@nestjs/common";
 
 type CreateCategoryResponse = Category;
@@ -9,7 +9,7 @@ type CreateCategoryResponse = Category;
 export class CreateCategory {
     constructor(private categoryRepository: CategoryAbstractRepository) { }
 
-    async execute(request: CreateCategoryDTO): Promise<CreateCategoryResponse> {
+    async execute(request: CreateCategoryPropsDTO): Promise<CreateCategoryResponse> {
 
         const category = new Category({
             user_id: request.user_id,

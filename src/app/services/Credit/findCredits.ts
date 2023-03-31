@@ -1,12 +1,8 @@
-import { Category } from "@app/entities/Category";
-import { Credit } from "@app/entities/Credit";
-import { CreditConfig } from "@app/entities/CreditConfig";
 import { CategoryAbstractRepository } from "@app/repositories/categoryAbstractRepository";
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
 import { CreditConfigAbstractRepository } from "@app/repositories/creditConfigAbstractRepository";
-import { FindCreditsDTO } from "@infra/http/DTOs/FindCreditDTO";
+import { FindCreditsPropsDTO } from "@infra/http/DTOs/creditDTO";
 import { Injectable } from "@nestjs/common";
-import { formatISO, parseISO, setDate } from "date-fns";
 
 @Injectable()
 export class FindCredits {
@@ -17,7 +13,7 @@ export class FindCredits {
         private creditConfigRepository: CreditConfigAbstractRepository
     ) { }
 
-    async execute(request: FindCreditsDTO) {
+    async execute(request: FindCreditsPropsDTO) {
         let { user_id, end_dt, start_dt } = request;
         
         console.log(start_dt, end_dt);
