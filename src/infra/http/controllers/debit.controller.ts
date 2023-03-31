@@ -2,7 +2,7 @@ import { Debit } from "@app/entities/Debit";
 import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository";
 import { GetDebits } from "@app/services/Debit/GetDebits";
 import { Body, Controller, Post } from "@nestjs/common";
-import { parseISO } from "date-fns";
+import { parseISO, setDate } from "date-fns";
 import { CreteDebitDTO, GetDebitsDTO } from "../DTOs/GetDebitsDTO";
 
 @Controller('/debit')
@@ -33,7 +33,11 @@ export class DebitController {
     async findAllDebits(@Body() req: GetDebitsDTO) {
         let { user_id, start_dt, end_dt } = req
 
-        let debits = await this.getDebits.execute({ user_id, start_dt, end_dt })
+        let debits = await this.getDebits.execute({ 
+            user_id, 
+            start_dt: (start_dt) ?  parseISO(start_dt): setDate(new Date(), 1),
+            end_dt: (end_dt) ?  parseISO(end_dt):  setDate(new Date(), 31) ,
+        })
 
         return debits.map(debit => {
             return {

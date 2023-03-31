@@ -19,14 +19,9 @@ export class FindCredits {
 
     async execute(request: FindCreditsDTO) {
         let { user_id, end_dt, start_dt } = request;
-
-        if (!start_dt) {
-            start_dt = setDate(new Date(), 1)
-        }
-
-        if (!end_dt) {
-            end_dt = parseISO(formatISO(new Date()))
-        }
+        
+        console.log(start_dt, end_dt);
+        
 
         let credits = this.creditRepository.findCreditsByUserIdAndMonth(
             user_id,

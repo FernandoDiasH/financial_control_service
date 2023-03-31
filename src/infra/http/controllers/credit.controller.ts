@@ -3,7 +3,7 @@ import { FindCredits } from "@app/services/Credit/findCredits";
 import { FindDistincstMonts } from "@app/services/Credit/findDistinctsMouth";
 import { PayCredit } from "@app/services/Credit/PayCredit";
 import { Body, Controller, Post } from "@nestjs/common";
-import { parseISO } from "date-fns";
+import { formatISO, parseISO, setDate } from "date-fns";
 import { CreateCreditDTO, FindCreditsDTO } from "../DTOs/creditDTO";
 import { CreditViewModel } from "../view-models/credit-view-model";
 
@@ -40,8 +40,8 @@ export class CreditController {
 
         let { credits, categories, creditConfig } = await this.findCredits.execute({
             user_id,
-            end_dt: parseISO(end_dt),
-            start_dt: parseISO(start_dt)
+            start_dt: (start_dt) ?  parseISO(start_dt): setDate(new Date(), 1),
+            end_dt: (end_dt) ?  parseISO(end_dt):  setDate(new Date(), 31) ,
         })
 
         return CreditViewModel.toHTTP({ credits, categories, creditConfig })

@@ -1,6 +1,6 @@
 
 
-export interface GetDebitsDTO {
+export interface GetDebitsPropsDTO {
     user_id: string;
     start_dt?: Date | null;
     end_dt?: Date | null;
@@ -9,8 +9,8 @@ export interface GetDebitsDTO {
 export class GetDebitsDTO {
 
     user_id: string;
-    start_dt?: Date | null;
-    end_dt?: Date | null;
+    start_dt?: string | null;
+    end_dt?: string | null;
 
 
 }

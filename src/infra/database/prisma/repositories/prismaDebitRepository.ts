@@ -13,6 +13,10 @@ export class PrismaDebitRepository extends Repository implements DebitAbstractRe
         const raw = await this.prisma.debit.findMany({
             where: {
                 user_id: user_id,
+                dt_purchase:{
+                    gt: start_dt,
+                    lt: end_dt
+                }
             }
         })
 
