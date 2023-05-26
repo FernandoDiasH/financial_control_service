@@ -1,4 +1,5 @@
 import { Category } from "src/modules/category/entity/category.entity";
+import { CreditConfig } from "src/modules/creadiConfig/entity/creditConfig.entity";
 import { DataSource, DataSourceOptions } from "typeorm";
 
 
@@ -11,7 +12,8 @@ export const connectionDatabaseConfig:DataSourceOptions = {
     database: "finance_service",
     logging:false,
     entities:[
-        Category
+        Category,
+        CreditConfig
     ]
 }
 

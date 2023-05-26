@@ -6,12 +6,14 @@ import { DatabaseModule } from '@infra/database/database.module';
 import { CategoryModule } from './modules/category/category.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { connectionDatabaseConfig } from '@infra/database/typeorm/connection.confg';
+import { CreditConfigModule } from './modules/creadiConfig/creditConfig.module';
 
 @Module({
   imports: [
     // HttpModule, 
     TypeOrmModule.forRoot(connectionDatabaseConfig),
-    CategoryModule
+    CategoryModule,
+    CreditConfigModule
     // DatabaseModule
   ],
   controllers: [AppController],
