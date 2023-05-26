@@ -17,7 +17,7 @@ export class CreditConfigController {
     
         let creditConfig = this.creditConfigRepository.createEntity({id: randomUUID(), userId:req.user_id,  ...req})
 
-        return await this.creditConfigRepository.saveEntity(creditConfig)
+        return await this.creditConfigRepository.saveEntity([creditConfig])
     }
 
     @Get('find-all/:userId')

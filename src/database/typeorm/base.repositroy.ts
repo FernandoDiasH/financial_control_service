@@ -11,7 +11,7 @@ export abstract class BaseRepository<T extends Model>{
         return this.repository.create(entity)
     }
 
-    saveEntity(entity: T){
+    saveEntity(entity: T[]){
         return this.repository.save(entity)
     }
 

@@ -29,6 +29,7 @@ export class Credit extends Model {
     credit_config_id: string;
 
     @ManyToOne(()=> Category, category => category.credits)
+    @JoinColumn({name:"category_id"})
     category:Category
 
     @ManyToOne(() => CreditConfig, creditConfig => creditConfig.credit)

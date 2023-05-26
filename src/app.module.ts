@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreditConfigModule } from './modules/creadiConfig/creditConfig.module';
 import { DebitModule } from './modules/debit/debit.module';
 import { connectionDatabaseConfig } from './database/typeorm/connection.confg';
+import { CreditModule } from './modules/credit/credit.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { connectionDatabaseConfig } from './database/typeorm/connection.confg';
     CategoryModule,
     CreditConfigModule,
     DebitModule,
+    CreditModule
     // DatabaseModule
   ],
   controllers: [AppController],

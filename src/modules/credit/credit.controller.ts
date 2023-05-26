@@ -1,31 +1,24 @@
 import { Body, Controller, Post } from "@nestjs/common";
+import { randomUUID } from "crypto";
 import { formatISO, parseISO, setDate } from "date-fns";
+import { CreditRepository } from "./credit.repository";
 import { CreateCreditDTO, FindCreditsDTO } from "./dtos/creditDTO";
+import { GenerateCreditInstallments } from "./services/generateCreditInstallments";
 
 
 @Controller('credit')
 export class CreditController {
     constructor(
-        // private createCredit: CreateCredit,
+        private generateCreditInstallments: GenerateCreditInstallments,
         // private findCredits: FindCredits,
         // private findDistinctMoths: FindDistincstMonts,
         // private payCredit: PayCredit
+        private readonly creditRepository:CreditRepository
     ) { }
 
     @Post()
     async create(@Body() req: CreateCreditDTO) {
-        // let { user_id, category_id, credit_config_id, data_compra, description, parcelas, value } = req
-
-        // let credit = await this.createCredit.execute({
-        //     user_id,
-        //     category_id,
-        //     credit_config_id,
-        //     data_compra,
-        //     description,
-        //     parcelas,
-        //     value
-        // })
-        // return credit
+        return await this.generateCreditInstallments.execute(req) 
     }
 
     @Post('find-all')

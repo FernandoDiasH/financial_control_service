@@ -1,7 +1,7 @@
 import { makeCreditConfig } from "@test/factories/CreditConfig";
 import { InMemoryCreditConfigRepository } from "@test/repositories/InMemoryCreditConfigRepository";
 import { InMemoryCreditRepository } from "@test/repositories/InMemoryCreditRepository";
-import { CreateCredit } from "./CreateCredit";
+import { CreateCredit } from "./generateCreditInstallments";
 
 describe('Create Credit use case', () => {
     it('Criar um lancamento de credito ', async () => {

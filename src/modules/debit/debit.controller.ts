@@ -17,7 +17,7 @@ export class DebitController {
     @Post()
     async create(@Body() req: CreteDebitDTO) {
         let debit = this.debitRepository.createEntity({id: randomUUID(), userId: req.user_id, ...req})
-        return await this.debitRepository.saveEntity(debit)
+        return await this.debitRepository.saveEntity([debit])
     }
 
     @Get('/all/:userId')

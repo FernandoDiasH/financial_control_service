@@ -14,9 +14,9 @@ export class CreateCreditDTO {
     credit_config_id: string;
     category_id: string;
     description: string;
-    data_compra: string;
-    parcelas: number;
-    value: number;
+    purchaseDate: string;
+    creditInstallments: number;
+    totalValue: number;
 }
 
 export class FindCreditsDTO {
