@@ -26,7 +26,7 @@ export abstract class BaseRepository<T extends Model>{
         return this.repository
             .createQueryBuilder()
             .where('id = :id', {id: id})
-            .andWhere("user_id = :userId", {userId:userId})
+            .andWhere("user_id = :userId", { userId: userId })
             .getOne()
     }
 }

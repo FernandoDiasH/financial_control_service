@@ -11,7 +11,7 @@ import { CreditModule } from './modules/credit/credit.module';
 @Module({
   imports: [
     // HttpModule, 
-    TypeOrmModule.forRoot(connectionDatabaseConfig),
+    TypeOrmModule.forRoot({...connectionDatabaseConfig, autoLoadEntities:true}),
     CategoryModule,
     CreditConfigModule,
     DebitModule,

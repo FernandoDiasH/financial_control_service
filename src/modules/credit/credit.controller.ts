@@ -2,17 +2,18 @@ import { Body, Controller, Post } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { formatISO, parseISO, setDate } from "date-fns";
 import { CreditRepository } from "./credit.repository";
-import { CreateCreditDTO, FindCreditsDTO } from "./dtos/creditDTO";
+import { CreateCreditDTO, FindCreditsDTO, PayCreditDto } from "./dtos/creditDTO";
 import { GenerateCreditInstallments } from "./services/generateCreditInstallments";
+import { PayCredit } from "./services/PayCredit";
 
 
 @Controller('credit')
 export class CreditController {
     constructor(
         private generateCreditInstallments: GenerateCreditInstallments,
+        private payCredit: PayCredit,
         // private findCredits: FindCredits,
         // private findDistinctMoths: FindDistincstMonts,
-        // private payCredit: PayCredit
         private readonly creditRepository:CreditRepository
     ) { }
 
@@ -41,7 +42,9 @@ export class CreditController {
     }
 
     @Post('pay')
-    async payCredits(@Body() req) {
-        // this.payCredit.execute(req.credit_id)
+    async payCredits(@Body() req: PayCreditDto) {
+        console.log(req);
+        
+       return await this.payCredit.execute(req.user_id, req.credit_id)
     }
 }

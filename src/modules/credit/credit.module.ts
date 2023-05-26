@@ -6,6 +6,7 @@ import { CreditController } from "./credit.controller";
 import { CreditRepository } from "./credit.repository";
 import { Credit } from "./entity/credit.entity";
 import { GenerateCreditInstallments } from "./services/generateCreditInstallments";
+import { PayCredit } from "./services/PayCredit";
 
 
 
@@ -19,7 +20,8 @@ import { GenerateCreditInstallments } from "./services/generateCreditInstallment
     providers:[
         GenerateCreditInstallments,
         CreditRepository,
-        CreditConfigRepository
+        CreditConfigRepository,
+        PayCredit
     ]
 })
 export class CreditModule{}

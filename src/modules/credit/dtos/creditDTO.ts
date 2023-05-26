@@ -30,3 +30,8 @@ export interface FindCreditsPropsDTO {
     start_dt?: Date;
     end_dt?: Date;
 }
+
+export class PayCreditDto{
+    credit_id:string
+    user_id: string;
+}

@@ -1,15 +1,19 @@
-import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { CreditRepository } from "../credit.repository";
 
 @Injectable()
 export class PayCredit {
-    constructor(private creditRepository: CreditAbstractRepository) { }
+    constructor(private creditRepository: CreditRepository) { }
 
-    async execute(credit_id: string) {
-        const credit = await this.creditRepository.findById(credit_id);
+    async execute(userId:string, credit_id: string) {
+        const credit = await this.creditRepository.findOneByUserId(credit_id, userId);
+     
+        if(!credit){
+            throw new NotFoundException("Credit not found")
+        }
 
-        credit.pay();
+        credit.credit_status = new Date()
 
-        await this.creditRepository.save(credit);
+        return await this.creditRepository.saveEntity([credit]);
     }
 }
