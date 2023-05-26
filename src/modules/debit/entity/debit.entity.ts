@@ -1,6 +1,6 @@
 import { Model } from 'src/database/typeorm/model';
 import { Category } from 'src/modules/category/entity/category.entity';
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity({name:"Debit"})
 export class Debit extends Model {
@@ -20,5 +20,6 @@ export class Debit extends Model {
     dt_purchase: Date;
 
     @ManyToOne( () => Category, category => category.debits)
+    @JoinColumn({name:"category_id"})
     category:Category
 }

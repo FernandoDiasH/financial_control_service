@@ -1,6 +1,6 @@
 import { Debit } from "@app/entities/Debit";
 import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository";
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { parseISO, setDate } from "date-fns";
 import { CreteDebitDTO, GetDebitsDTO } from "./dtos/DebitDTO";
@@ -16,29 +16,22 @@ export class DebitController {
 
     @Post()
     async create(@Body() req: CreteDebitDTO) {
-
         let debit = this.debitRepository.createEntity({id: randomUUID(), userId: req.user_id, ...req})
-        await this.debitRepository.saveEntity(debit)
-        
+        return await this.debitRepository.saveEntity(debit)
     }
 
-    @Post('find')
-    async findAllDebits(@Body() req: GetDebitsDTO) {
-        // let { user_id, start_dt, end_dt } = req
+    @Get('/all/:userId')
+    async findAllDebits(@Param() req) {
 
-        // let debits = await this.getDebits.execute({ 
-        //     user_id, 
-        //     start_dt: (start_dt) ?  parseISO(start_dt): setDate(new Date(), 1),
-        //     end_dt: (end_dt) ?  parseISO(end_dt):  setDate(new Date(), 31) ,
-        // })
+        let debits = await this.debitRepository.findManyByUserId(req.userId)
 
-        // return debits.map(debit => {
-        //     return {
-        //         id: debit.id,
-        //         description: debit.description,
-        //         data: debit.dt_purchase,
-        //         valor: debit.value
-        //     }
-        // })
+        return debits.map(debit => {
+            return {
+                id: debit.id,
+                description: debit.description,
+                data: debit.dt_purchase,
+                valor: debit.value
+            }
+        })
     }
 }
