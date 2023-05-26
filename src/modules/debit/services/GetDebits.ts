@@ -1,6 +1,6 @@
 import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository"
-import { GetDebitsPropsDTO } from "@infra/http/DTOs/DebitDTO";
 import { Injectable } from "@nestjs/common";
+import { GetDebitsPropsDTO } from "../dtos/DebitDTO";
 
 @Injectable()
 export class GetDebits {

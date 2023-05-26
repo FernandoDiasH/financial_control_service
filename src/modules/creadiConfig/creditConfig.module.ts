@@ -1,4 +1,3 @@
-import { CreditController } from "@infra/http/controllers/credit.controller";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CreditConfigController } from "./creditConfig.controller";

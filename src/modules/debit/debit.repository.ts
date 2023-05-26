@@ -1,6 +1,6 @@
-import { BaseRepository } from "@infra/database/typeorm/base.repositroy";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { BaseRepository } from "src/database/typeorm/base.repositroy";
 import { Repository } from "typeorm";
 import { Debit } from "./entity/debit.entity";
 

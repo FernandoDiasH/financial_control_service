@@ -1,4 +1,4 @@
-import { Debit } from '../../../../app/entities/Debit';
+import { Debit } from '@app/entities/Debit';
 import {Debit as prismaDebit} from  '@prisma/client'
 
 export class PrismaDebitMapper {

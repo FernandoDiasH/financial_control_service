@@ -3,7 +3,7 @@ import { DebitAbstractRepository } from "@app/repositories/debitAbstractReposito
 import { Body, Controller, Post } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { parseISO, setDate } from "date-fns";
-import { CreteDebitDTO, GetDebitsDTO } from "../../infra/http/DTOs/DebitDTO";
+import { CreteDebitDTO, GetDebitsDTO } from "./dtos/DebitDTO";
 import { DebitRepository } from "./debit.repository";
 
 @Controller('/debit')

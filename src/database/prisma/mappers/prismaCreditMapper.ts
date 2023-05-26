@@ -1,4 +1,4 @@
-import { Credit } from '../../../../app/entities/Credit';
+import { Credit } from '@app/entities/Credit';
 import { Credit as prismaCredit } from '@prisma/client';
 
 export class PrismaCreditMapper {

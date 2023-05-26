@@ -1,4 +1,4 @@
-import { Model } from '@infra/database/typeorm/model';
+import { Model } from 'src/database/typeorm/model';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity({name:"CreditConfig"})

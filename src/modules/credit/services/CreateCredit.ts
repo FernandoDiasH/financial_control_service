@@ -2,9 +2,9 @@ import { Credit } from "@app/entities/Credit";
 import { CreditConfig } from "@app/entities/CreditConfig";
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
 import { CreditConfigAbstractRepository } from "@app/repositories/creditConfigAbstractRepository";
-import { CreateCreditPropsDTO } from "@infra/http/DTOs/creditDTO";
 import { Injectable } from "@nestjs/common";
 import { addMonths, parseISO } from "date-fns";
+import { CreateCreditPropsDTO } from "src/modules/credit/dtos/creditDTO";
 
 @Injectable()
 export class CreateCredit {

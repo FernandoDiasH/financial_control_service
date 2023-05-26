@@ -1,4 +1,4 @@
-import { CreditConfig } from '../../../app/entities/CreditConfig';
+import { CreditConfig } from "@app/entities/CreditConfig";
 
 export class CreditConfigViewModel {
     static toHTTP(creditConfig: CreditConfig) {

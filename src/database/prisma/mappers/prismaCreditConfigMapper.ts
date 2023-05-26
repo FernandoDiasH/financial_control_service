@@ -1,4 +1,4 @@
-import { CreditConfig } from '../../../../app/entities/CreditConfig';
+import { CreditConfig } from '@app/entities/CreditConfig';
 import { CreditConfig as prismaCreditConfig } from '@prisma/client';
 import {} from '@prisma/client';
 

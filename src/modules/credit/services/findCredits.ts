@@ -1,8 +1,8 @@
 import { CategoryAbstractRepository } from "@app/repositories/categoryAbstractRepository";
 import { CreditAbstractRepository } from "@app/repositories/CreditAbstractRepository";
 import { CreditConfigAbstractRepository } from "@app/repositories/creditConfigAbstractRepository";
-import { FindCreditsPropsDTO } from "@infra/http/DTOs/creditDTO";
 import { Injectable } from "@nestjs/common";
+import { FindCreditsPropsDTO } from "src/modules/credit/dtos/creditDTO";
 
 @Injectable()
 export class FindCredits {

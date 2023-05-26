@@ -1,4 +1,4 @@
-import { Category } from '../../../app/entities/Category';
+import { Category } from "@app/entities/Category";
 
 export class CategoryViewModel {
     static toHTTP(category: Category) {

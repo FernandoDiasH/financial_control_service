@@ -1,6 +1,6 @@
-import { Model } from "@infra/database/typeorm/model";
 import { TypeCategory } from "@prisma/client";
 import { randomUUID } from "crypto";
+import { Model } from "src/database/typeorm/model";
 import { BaseEntity, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name:"Category"})

@@ -1,4 +1,4 @@
-import { Category } from '../../../../app/entities/Category';
+import { Category } from '@app/entities/Category';
 import { Category as PrismaCategory } from '@prisma/client';
 
 export class PrismaCategoryMapper {

@@ -2,13 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { BaseRepository } from "src/database/typeorm/base.repositroy";
 import { Repository } from "typeorm";
-import { CreditConfig } from "./entity/creditConfig.entity";
+import { Credit } from "./entity/credit.entity";
 
 @Injectable()
-export class CreditConfigRepository extends BaseRepository<CreditConfig>{
+export class CreditRepository extends BaseRepository<Credit>{
 
     constructor(
-        @InjectRepository(CreditConfig) model: Repository<CreditConfig>
+        @InjectRepository(Credit) model: Repository<Credit>
     ){
         super( model )
     }

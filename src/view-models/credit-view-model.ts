@@ -1,6 +1,6 @@
-import { Category } from '../../../app/entities/Category';
-import { Credit } from '../../../app/entities/Credit';
-import { CreditConfig } from '../../../app/entities/CreditConfig';
+import { Category } from "@app/entities/Category";
+import { Credit } from "@app/entities/Credit";
+import { CreditConfig } from "@app/entities/CreditConfig";
 
 interface CreditsData {
     credits: Credit[];
