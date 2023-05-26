@@ -7,13 +7,15 @@ import { CategoryModule } from './modules/category/category.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { connectionDatabaseConfig } from '@infra/database/typeorm/connection.confg';
 import { CreditConfigModule } from './modules/creadiConfig/creditConfig.module';
+import { DebitModule } from './modules/debit/debit.module';
 
 @Module({
   imports: [
     // HttpModule, 
     TypeOrmModule.forRoot(connectionDatabaseConfig),
     CategoryModule,
-    CreditConfigModule
+    CreditConfigModule,
+    DebitModule,
     // DatabaseModule
   ],
   controllers: [AppController],
