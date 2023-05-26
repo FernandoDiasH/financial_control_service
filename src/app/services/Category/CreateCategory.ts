@@ -1,7 +1,7 @@
 import { Category } from "@app/entities/Category";
 import { CategoryAbstractRepository } from "@app/repositories/categoryAbstractRepository";
-import { CreateCategoryPropsDTO } from "@infra/http/DTOs/categoryDTO";
 import { Injectable } from "@nestjs/common";
+import { CreateCategoryPropsDTO } from "src/modules/category/dtos/categoryDTO";
 
 type CreateCategoryResponse = Category;
 

@@ -6,26 +6,29 @@ import { PayCredit } from "@app/services/Credit/PayCredit";
 import { GetDebits } from "@app/services/Debit/GetDebits";
 import { DatabaseModule } from "@infra/database/database.module";
 import { Module } from "@nestjs/common";
-import { CategoryController } from "./controllers/category.controller";
+import { CategoryModule } from "src/modules/category/category.module";
+import { CategoryController } from "../../modules/category/category.controller";
 import { CreditController } from "./controllers/credit.controller";
 import { CreditConfigController } from "./controllers/creditConfig.controller";
 import { DebitController } from "./controllers/debit.controller";
 
 @Module({
-    imports: [DatabaseModule],
+    imports: [
+        // DatabaseModule,
+    ],
     controllers: [
-        CategoryController,
-        DebitController,
-        CreditConfigController,
-        CreditController
+        // CategoryController,
+        // DebitController,
+        // CreditConfigController,
+        // CreditController
     ],
     providers: [
-        CreateCategory,
-        GetDebits,
-        CreateCredit,
-        FindCredits,
-        FindDistincstMonts,
-        PayCredit
+        // CreateCategory,
+        // GetDebits,
+        // CreateCredit,
+        // FindCredits,
+        // FindDistincstMonts,
+        // PayCredit
     ],
 })
 export class HttpModule { } 

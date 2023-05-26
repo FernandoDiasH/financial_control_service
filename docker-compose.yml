@@ -1,22 +1,21 @@
 version: '3.8'
 services:
-  finance-app-nest:
-    build: .
-    depends_on:
-      - finance-db-nest
-    env_file: dev.env
-    container_name: "finance_app-nest"
-    volumes:
-      - ./:/home/node/app
-    ports:
-      - "${APP_PORT}:${APP_PORT}"
-    networks:
-      - finance_service
-
+  # finance-app-nest:
+  #   build: .
+  #   depends_on:
+  #     - finance-db-nest
+  #   env_file: dev.env
+  #   container_name: "finance_app-nest"
+  #   volumes:
+  #     - ./:/home/node/app
+  #   ports:
+  #     - "${APP_PORT}:${APP_PORT}"
+  #   networks:
+  #     - finance_service
   finance-db-nest:
     image: mysql:8.0-debian
     env_file: dev.env
-    container_name: "finance_db-nest"
+    container_name: finance_db-nest
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -26,9 +25,9 @@ services:
       - ${DB_PORT}:3306
     # volumes:
     #   - ./docker/sql:/docker-entrypoint-initdb.d
-    networks:
-      - finance_service
+    # networks:
+    #   - finance_service
 
-networks:
-  finance_service:
-    driver: bridge
+# networks:
+#   finance_service:
+#     driver: bridge
