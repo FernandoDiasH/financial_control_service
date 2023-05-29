@@ -1,6 +1,6 @@
 import { Debit } from "@app/entities/Debit";
 import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository";
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { parseISO, setDate } from "date-fns";
 import { CreteDebitDTO, GetDebitsDTO } from "./dtos/DebitDTO";
@@ -33,5 +33,10 @@ export class DebitController {
                 valor: debit.value
             }
         })
+    }
+
+    @Put()
+    async update(){
+
     }
 }

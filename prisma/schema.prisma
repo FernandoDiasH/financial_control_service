@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native"]
 }
 
@@ -9,8 +9,8 @@ datasource db {
 }
 
 model CreditConfig {
-  id                 String   @id @default(uuid())
-  user_id            String   @db.Text
+  id                 Int      @id @default(autoincrement())
+  id_user            String   @db.Text
   description        String   @db.VarChar(255)
   limit_credit       Float    @db.Float
   day_due            Int      @db.Int()
@@ -20,41 +20,41 @@ model CreditConfig {
 
 model Credit {
   id                String       @id @default(uuid())
-  user_id           String       @db.Text
-  category_id       String
-  credit_config_id  String
+  id_user           String       @db.Text
+  id_category       Int
+  id_credit_config  Int
   description       String       @db.VarChar(255)
   installment_value Float        @db.Float
   dt_due            DateTime     @db.DateTime()
   credit_status     DateTime?    @db.Timestamp()
-  credit_Config     CreditConfig @relation(fields: [credit_config_id], references: [id])
-  category          Category     @relation(fields: [category_id], references: [id])
+  credit_Config     CreditConfig @relation(fields: [id_credit_config], references: [id])
+  category          Category     @relation(fields: [id_category], references: [id])
 
-  @@index([category_id], map: "Credit_category_id_fkey")
+  @@index([id_category], map: "Credit_category_id_fkey")
 }
 
-enum TypeCategory{
-  Entrada 
-  Saida 
+enum TypeCategory {
+  Entrada
+  Saida
 }
 
 model Category {
-  id          String   @id @default(uuid())
-  user_id     String   @db.Text
-  description String   @db.VarChar(255)
+  id            Int          @id @default(autoincrement())
+  id_user       String       @db.Text
+  description   String       @db.VarChar(255)
   type_category TypeCategory
-  credit      Credit[]
-  debit       Debit[]
+  credit        Credit[]
+  debit         Debit[]
 }
 
 model Debit {
-  id          String   @id @default(uuid())
-  user_id     String   @db.Text
-  category_id String
+  id          Int      @id @default(autoincrement())
+  id_user     String   @db.Text
+  id_category Int
   description String   @db.VarChar(255)
   value       Float
   dt_purchase DateTime @db.DateTime()
-  category    Category @relation(fields: [category_id], references: [id])
+  category    Category @relation(fields: [id_category], references: [id])
 
-  @@index([category_id], map: "Debit_category_id_fkey")
+  @@index([id_category], map: "Debit_category_id_fkey")
 }

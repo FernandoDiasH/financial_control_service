@@ -4,7 +4,6 @@ import { Controller, Get } from "@nestjs/common";
 @Controller()
 export class AnalyzeController {
 
-
     @Get()
     async analyze(){
 
@@ -16,8 +15,5 @@ export class AnalyzeController {
 
         //pegar todos os creditos e somar
         //pegar os creditos do mes 
-
-
-
     }
 }

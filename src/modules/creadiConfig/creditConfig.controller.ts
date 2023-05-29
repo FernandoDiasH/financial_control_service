@@ -13,7 +13,7 @@ export class CreditConfigController {
     ) { }
 
     @Post()
-    async createCredit(@Body() req: CreateCreditConfigDTO) {
+    async createCreditConfig(@Body() req: CreateCreditConfigDTO) {
     
         let creditConfig = this.creditConfigRepository.createEntity({id: randomUUID(), userId:req.user_id,  ...req})
 
