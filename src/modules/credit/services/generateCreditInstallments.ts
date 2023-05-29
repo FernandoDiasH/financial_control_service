@@ -33,10 +33,9 @@ export class GenerateCreditInstallments {
         
         for(let partialAmount = 0; partialAmount < creditInstallments; partialAmount++){
             let creditInstallment = this.creditRepository.createEntity({
-                id:randomUUID(),
-                userId: user_id,
-                category_id: category_id,
-                credit_config_id: credit_config_id,
+                id_user: user_id,
+                id_category: category_id,
+                id_credit_config: credit_config_id,
                 description:description,
                 installment_value: installmentAmount,
                 dt_due: this.calculateDateDue(partialAmount)

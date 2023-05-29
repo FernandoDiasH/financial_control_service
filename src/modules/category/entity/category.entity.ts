@@ -8,8 +8,8 @@ import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryColumn, Primar
 @Entity({name:"Category"})
 export class Category extends Model {
     
-    @PrimaryColumn()
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     description: string;

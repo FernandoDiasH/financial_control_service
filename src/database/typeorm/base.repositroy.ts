@@ -22,7 +22,7 @@ export abstract class BaseRepository<T extends Model>{
             .getMany()
     }
 
-    findOneByUserId(id:string, userId:string){
+    findOneByUserId(id:number, userId:string){
         return this.repository
             .createQueryBuilder()
             .where('id = :id', {id: id})

@@ -31,7 +31,7 @@ export class CreditController {
                 creditConfig:true
             },
             where:{
-                userId:req.userId
+                id_user:req.userId
             }
         })
         return credits

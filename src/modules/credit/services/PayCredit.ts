@@ -5,7 +5,7 @@ import { CreditRepository } from "../credit.repository";
 export class PayCredit {
     constructor(private creditRepository: CreditRepository) { }
 
-    async execute(userId:string, credit_id: string) {
+    async execute(userId:string, credit_id: number) {
         const credit = await this.creditRepository.findOneByUserId(credit_id, userId);
      
         if(!credit){

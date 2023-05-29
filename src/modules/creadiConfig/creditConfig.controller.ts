@@ -15,7 +15,7 @@ export class CreditConfigController {
     @Post()
     async createCreditConfig(@Body() req: CreateCreditConfigDTO) {
     
-        let creditConfig = this.creditConfigRepository.createEntity({id: randomUUID(), userId:req.user_id,  ...req})
+        let creditConfig = this.creditConfigRepository.createEntity({id_user:req.user_id,  ...req})
 
         return await this.creditConfigRepository.saveEntity([creditConfig])
     }
@@ -27,7 +27,7 @@ export class CreditConfigController {
         return creditConfigs.map(creditConfig => {
             return {
                 id: creditConfig.id,
-                user_id: creditConfig.userId,
+                user_id: creditConfig.id_user,
                 descricao: creditConfig.description,
                 vencimento: creditConfig.day_due,
                 fechamento: creditConfig.day_credit_closing,

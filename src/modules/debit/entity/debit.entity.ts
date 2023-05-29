@@ -1,14 +1,14 @@
 import { Model } from 'src/database/typeorm/model';
 import { Category } from 'src/modules/category/entity/category.entity';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({name:"Debit"})
 export class Debit extends Model {
-    @PrimaryColumn()
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
-    category_id: string;
+    id_category: number;
     
     @Column()
     description: string;

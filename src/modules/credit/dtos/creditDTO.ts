@@ -11,8 +11,8 @@ export interface CreateCreditPropsDTO {
 
 export class CreateCreditDTO {
     user_id: string;
-    credit_config_id: string;
-    category_id: string;
+    credit_config_id: number;
+    category_id: number;
     description: string;
     purchaseDate: string;
     creditInstallments: number;
@@ -32,6 +32,6 @@ export interface FindCreditsPropsDTO {
 }
 
 export class PayCreditDto{
-    credit_id:string
+    credit_id:number
     user_id: string;
 }

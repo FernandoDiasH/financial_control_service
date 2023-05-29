@@ -1,12 +1,12 @@
 import { Model } from 'src/database/typeorm/model';
 import { Credit } from 'src/modules/credit/entity/credit.entity';
-import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({name:"CreditConfig"})
 export class CreditConfig extends Model {
     
-    @PrimaryColumn()
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     description: string;

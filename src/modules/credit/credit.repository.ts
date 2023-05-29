@@ -13,8 +13,8 @@ export class CreditRepository extends BaseRepository<Credit>{
         super( model )
     }
 
-    sumCreditValues(userId:string, creditConfigId:string){
-        return this.repository.sum("installment_value", {userId: userId, credit_config_id: creditConfigId, credit_status: IsNull()})
+    sumCreditValues(userId:string, creditConfigId:number){
+        return this.repository.sum("installment_value", {id_user: userId, id_credit_config: creditConfigId, credit_status: IsNull()})
     }
 
 }

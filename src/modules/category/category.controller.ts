@@ -13,7 +13,7 @@ export class CategoryController {
     @Post()
     async create(@Body() req: CreateCategoryDTO) {
     
-        let category = this.categoryRepository.createEntity({ id: randomUUID(), userId: req.user_id, ...req})  
+        let category = this.categoryRepository.createEntity({ id_user: req.user_id, ...req})  
         return await this.categoryRepository.saveEntity([category])
 
     }

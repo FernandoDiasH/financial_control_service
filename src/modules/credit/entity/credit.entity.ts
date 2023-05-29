@@ -1,17 +1,20 @@
 import { Model } from 'src/database/typeorm/model';
 import { Category } from 'src/modules/category/entity/category.entity';
 import { CreditConfig } from 'src/modules/creadiConfig/entity/creditConfig.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 
 @Entity({name:"Credit"})
 export class Credit extends Model {
     
-    @PrimaryColumn()
-    id:string
+    @PrimaryGeneratedColumn()
+    id:number
 
     @Column()
-    category_id: string;
+    id_category: number;
+
+    @Column()
+    id_credit_config: number;
 
     @Column()
     description: string;
@@ -24,9 +27,6 @@ export class Credit extends Model {
 
     @Column()
     credit_status?: Date | null;
-
-    @Column()
-    credit_config_id: string;
 
     @ManyToOne(()=> Category, category => category.credits)
     @JoinColumn({name:"category_id"})
