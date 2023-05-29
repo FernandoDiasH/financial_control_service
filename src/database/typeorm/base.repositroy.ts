@@ -4,7 +4,7 @@ import { Model } from "./model";
 export abstract class BaseRepository<T extends Model>{
 
     constructor( 
-        protected repository:Repository<T>)
+        public repository:Repository<T>)
     {}
 
     createEntity(entity: DeepPartial<T>){
