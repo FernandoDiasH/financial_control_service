@@ -19,7 +19,7 @@ model CreditConfig {
 }
 
 model Credit {
-  id                String       @id @default(uuid())
+  id                 Int      @id @default(autoincrement())
   id_user           String       @db.Text
   id_category       Int
   id_credit_config  Int

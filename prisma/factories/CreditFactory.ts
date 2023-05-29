@@ -19,7 +19,7 @@ export function CreditFactory(qtd:number, user_id:string, categories_ids:Categor
     return data
 }
 
-function makeCredit(user_id:string, category_id:string, credit_config_id:string):Credit[]{
+function makeCredit(user_id:string, category_id:number, credit_config_id:number):Credit[]{
     const parcela = faker.datatype.number({min:1, max:12})
     const data:Credit[] = []
     const date = faker.date.past(5)
@@ -29,10 +29,10 @@ function makeCredit(user_id:string, category_id:string, credit_config_id:string)
         const dt_due = addMonths(date, i)
         const credit_status = [null, addDays( dt_due, faker.datatype.number(60))]
         data.push({
-            id:randomUUID(),
-            user_id:user_id,
-            category_id:category_id,
-            credit_config_id: credit_config_id,
+            id:1,
+            id_user:user_id,
+            id_category:category_id,
+            id_credit_config: credit_config_id,
             description:faker.commerce.product(),
             dt_due: dt_due,
             installment_value:value,

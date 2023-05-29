@@ -1,20 +1,20 @@
 import { randomUUID } from 'crypto';
 interface CreditProps {
     user_id: string;
-    category_id: string;
+    category_id: number;
     description: string;
     installment_value: number;
     dt_due: Date;
     credit_status?: Date | null;
-    credit_config_id: string;
+    credit_config_id: number;
 }
 
 export class Credit {
-    private _id: string;
+    private _id: number;
     private props: CreditProps;
 
-    constructor(props: CreditProps, id?: string) {
-        this._id = id ?? randomUUID();
+    constructor(props: CreditProps, id?: number) {
+        this._id = id;
         this.props = {
             ...props,
             credit_status: null ?? props.credit_status,

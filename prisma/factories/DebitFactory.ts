@@ -13,11 +13,11 @@ export function DebitFactory(qtd:number, user_id:string, categories:Category[]):
     return data
 }
 
-function makeDebit(user_id:string, category_id:string):Debit{
+function makeDebit(user_id:string, category_id:number):Debit{
     return {
-        id:randomUUID(),
-        user_id:user_id,
-        category_id:category_id,
+        id:1,
+        id_user:user_id,
+        id_category:category_id,
         description:faker.commerce.productName(),
         dt_purchase:faker.date.past(5),
         value:faker.datatype.number({min:1, max:10000}),

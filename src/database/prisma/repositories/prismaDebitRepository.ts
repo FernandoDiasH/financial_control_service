@@ -12,7 +12,7 @@ export class PrismaDebitRepository extends Repository implements DebitAbstractRe
 
         const raw = await this.prisma.debit.findMany({
             where: {
-                user_id: user_id,
+                id_user: user_id,
                 dt_purchase:{
                     gt: start_dt,
                     lt: end_dt
@@ -26,9 +26,9 @@ export class PrismaDebitRepository extends Repository implements DebitAbstractRe
     async create(entity: Debit): Promise<Debit> {
         const raw = PrismaDebitMapper.toPrisma(entity);
 
-        await this.prisma.debit.create({
-            data: raw
-        });
+        // await this.prisma.debit.create({
+        //     data: raw
+        // });
         return entity
     }
 
@@ -38,7 +38,7 @@ export class PrismaDebitRepository extends Repository implements DebitAbstractRe
     async delete(userID: string, entititeId: string): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
-    async findById(userId: string): Promise<Debit> {
+    async findById(userId: number): Promise<Debit> {
         throw new Error("Method not implemented.");
     }
     async findManyByUserId(userId: string): Promise<[] | Debit[]> {

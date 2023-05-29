@@ -10,9 +10,9 @@ export class PrismaCreditConfigRepository extends Repository implements CreditCo
     async create(entitie: CreditConfig): Promise<CreditConfig> {
         const raw = PrismaCreditconfigMapper.toPrisma(entitie);
 
-        await this.prisma.creditConfig.create({
-            data: raw,
-        });
+        // await this.prisma.creditConfig.create({
+        //     data: raw,
+        // });
 
         return entitie
     }
@@ -25,7 +25,7 @@ export class PrismaCreditConfigRepository extends Repository implements CreditCo
         throw new Error("Method not implemented.");
     }
 
-    async findById(creditConfigID: string): Promise<CreditConfig> {
+    async findById(creditConfigID: number): Promise<CreditConfig> {
         const data = await this.prisma.creditConfig.findUniqueOrThrow({
             where: {
                 id: creditConfigID,
@@ -38,7 +38,7 @@ export class PrismaCreditConfigRepository extends Repository implements CreditCo
     async findManyByUserId(userId: string): Promise<[] | CreditConfig[]> {
         const data = await this.prisma.creditConfig.findMany({
             where: {
-                user_id: userId,
+                id_user: userId,
             },
         });
 

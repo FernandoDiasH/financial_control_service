@@ -9,11 +9,11 @@ interface CreditConfigProps {
 }
 
 export class CreditConfig {
-    private _id: string;
+    private _id: number;
     private props: CreditConfigProps;
 
-    constructor(props: CreditConfigProps, id?: string) {
-        this._id = id ?? randomUUID();
+    constructor(props: CreditConfigProps, id?: number) {
+        this._id = id ;
         this.props = props;
     }
 

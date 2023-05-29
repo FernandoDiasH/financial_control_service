@@ -7,15 +7,15 @@ import { Repository } from "./repository";
 @Injectable()
 export class PrismaCreditRepository extends Repository implements CreditAbstractRepository {
 
-    async countValueCredits(user_id: string, credit_config_id: string): Promise<number> {
+    async countValueCredits(user_id: string, credit_config_id: number): Promise<number> {
 
         const value = await this.prisma.credit.aggregate({
             _sum: {
                 installment_value: true,
             },
             where: {
-                credit_config_id: credit_config_id,
-                user_id: user_id,
+                id_credit_config: credit_config_id,
+                id_user: user_id,
                 credit_status: null,
             },
         });
@@ -31,7 +31,7 @@ export class PrismaCreditRepository extends Repository implements CreditAbstract
 
         const raw = await this.prisma.credit.findMany({
             where: {
-                user_id: user_id,
+                id_user: user_id,
                 dt_due: {
                     gt: start_dt,
                     lt: end_dt,
@@ -48,7 +48,7 @@ export class PrismaCreditRepository extends Repository implements CreditAbstract
     async findDistinctMounts(user_id: string): Promise<Date[]> {
         const raw = await this.prisma.credit.findMany({
             where: {
-                user_id: user_id,
+                id_user: user_id,
             },
             select: {
                 dt_due: true,
@@ -65,9 +65,9 @@ export class PrismaCreditRepository extends Repository implements CreditAbstract
     async create(entitie: Credit): Promise<Credit> {
         const raw = PrismaCreditMapper.toPrisma(entitie);
 
-        await this.prisma.credit.create({
-            data: raw,
-        });
+        // await this.prisma.credit.create({
+        //     data: raw,
+        // });
 
         return entitie
     }
@@ -88,7 +88,7 @@ export class PrismaCreditRepository extends Repository implements CreditAbstract
         throw new Error("Method not implemented.");
     }
 
-    async findById(entitieId: string): Promise<Credit> {
+    async findById(entitieId: number): Promise<Credit> {
         const raw = await this.prisma.credit.findUniqueOrThrow({
             where: {
                 id: entitieId

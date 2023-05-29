@@ -14,7 +14,7 @@ export class PrismaCategoryMapper {
     static toDomain(category: PrismaCategory) {
         return new Category(
             {
-                user_id: category.user_id,
+                user_id: category.id_user,
                 description: category.description,
                 type: category.type_category
             },

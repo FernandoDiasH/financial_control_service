@@ -18,8 +18,8 @@ describe('Prisma credit config mapper ', ()=>{
 
     it('Deveria trazer os dados correto para o dominio', ()=>{
         let creditConfig = PrismaCreditconfigMapper.toDomain({
-            id:'teste',
-            user_id:'usuario-teste',
+            id:1,
+            id_user:'usuario-teste',
             description:'teste',
             limit_credit:3000,
             day_due:16,

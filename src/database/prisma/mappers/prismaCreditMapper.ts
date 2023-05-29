@@ -18,9 +18,9 @@ export class PrismaCreditMapper {
     static toDomain(credit: prismaCredit) {
         return new Credit(
             {
-                user_id: credit.user_id,
-                category_id: credit.category_id,
-                credit_config_id: credit.credit_config_id,
+                user_id: credit.id_user,
+                category_id: credit.id_category,
+                credit_config_id: credit.id_credit_config,
                 description: credit.description,
                 dt_due: credit.dt_due,
                 installment_value: credit.installment_value,

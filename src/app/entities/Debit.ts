@@ -4,16 +4,16 @@ interface DebitProps {
     user_id: string;
     description: string;
     value: number;
-    category_id: string;
+    category_id: number;
     dt_purchase: Date;
 }
 
 export class Debit {
-    private _id: string;
+    private _id: number;
     private props: DebitProps;
 
-    constructor(props: DebitProps, id?: string) {
-        this._id = id ?? randomUUID();
+    constructor(props: DebitProps, id?: number) {
+        this._id = id ;
         this.props = props;
     }
 

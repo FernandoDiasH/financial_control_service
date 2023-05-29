@@ -14,8 +14,8 @@ export function CreditConfigFactory(qtd:number, user_id:string):CreditConfig[]{
 
 function makeCreditConfig(user_id:string):CreditConfig{
     return {
-        id:randomUUID(),
-        user_id: user_id,
+        id:1,
+        id_user: user_id,
         day_credit_closing: faker.datatype.number({min:1,  max:31}),
         day_due: faker.datatype.number({min:1,  max:31}),
         description: faker.finance.accountName(),

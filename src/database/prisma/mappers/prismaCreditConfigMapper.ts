@@ -17,7 +17,7 @@ export class PrismaCreditconfigMapper {
     static toDomain(creditConfig: prismaCreditConfig): CreditConfig {
         return new CreditConfig(
             {
-                user_id: creditConfig.user_id,
+                user_id: creditConfig.id_user,
                 limit_credit: creditConfig.limit_credit,
                 day_credit_closing: creditConfig.day_credit_closing,
                 day_due: creditConfig.day_due,

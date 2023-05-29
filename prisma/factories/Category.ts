@@ -43,8 +43,8 @@ export function makeCategories(user_id:string){
 
 function makeCategory(user_id:string, categoria:category):Category{
     return {
-        id:randomUUID(),
-        user_id:user_id,
+        id: 1,
+        id_user:user_id,
         description:categoria.description,
         type_category:categoria.type
     }

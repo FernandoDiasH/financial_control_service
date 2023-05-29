@@ -6,7 +6,7 @@ export abstract class CreditAbstractRepository extends AbstractRepository<Credit
 
     abstract countValueCredits(
         user_id: string,
-        credit_config_id: string
+        credit_config_id: number
     ): Promise<number>;
 
     abstract findCreditsByUserIdAndMonth(

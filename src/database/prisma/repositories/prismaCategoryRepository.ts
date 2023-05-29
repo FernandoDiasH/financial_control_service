@@ -11,9 +11,9 @@ export class PrismaCategoryRepository extends Repository implements CategoryAbst
 
         const raw = PrismaCategoryMapper.toPrisma(entitie);
 
-        await this.prisma.category.create({
-            data: raw,
-        });
+        // await this.prisma.category.create({
+        //     data: raw,
+        // });
 
         return entitie
     }
@@ -26,7 +26,7 @@ export class PrismaCategoryRepository extends Repository implements CategoryAbst
         throw new Error("Method not implemented.");
     }
 
-    async findById(entititeId: string): Promise<Category> {
+    async findById(entititeId: number): Promise<Category> {
         const raw = await this.prisma.category.findFirstOrThrow({
             where: {
                 id: entititeId
@@ -39,7 +39,7 @@ export class PrismaCategoryRepository extends Repository implements CategoryAbst
     async findManyByUserId(userId: string): Promise<[] | Category[]> {
         const raw = await this.prisma.category.findMany({
             where: {
-                user_id: userId,
+                id_user: userId,
             },
         });
 

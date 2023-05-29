@@ -9,11 +9,11 @@ export interface CategoryProps {
 export type TypeCategory = 'Entrada' | 'Saida'
 
 export class Category {
-    private _id: string;
+    private _id: number;
     private props: CategoryProps;
 
-    constructor(props: CategoryProps, id?: string) {
-        this._id = id ?? randomUUID();
+    constructor(props: CategoryProps, id?: number) {
+        this._id = id ;
 
         if (typeof props.user_id == 'number') {
             throw new Error();

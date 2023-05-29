@@ -15,9 +15,9 @@ export class PrismaDebitMapper {
 
     static toDomain(prismaDebit: prismaDebit ){
         return new Debit({
-            user_id: prismaDebit.user_id,
+            user_id: prismaDebit.id_user,
             description: prismaDebit.description,
-            category_id: prismaDebit.category_id,
+            category_id: prismaDebit.id_category,
             dt_purchase: prismaDebit.dt_purchase,
             value:prismaDebit.value
         }, prismaDebit.id)
