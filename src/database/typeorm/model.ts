@@ -3,6 +3,6 @@ import { BaseEntity, Column } from "typeorm";
 
 export class Model extends BaseEntity {
      
-    @Column({name:"user_id"})
+    @Column({name:"id_user"})
     id_user:string
 }

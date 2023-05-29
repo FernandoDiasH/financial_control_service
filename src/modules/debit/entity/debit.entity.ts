@@ -20,6 +20,6 @@ export class Debit extends Model {
     dt_purchase: Date;
 
     @ManyToOne( () => Category, category => category.debits)
-    @JoinColumn({name:"category_id"})
+    @JoinColumn({name:"id_category"})
     category:Category
 }

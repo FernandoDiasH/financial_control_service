@@ -23,7 +23,7 @@ export class GenerateCreditInstallments {
         this.req = request
         this.date_purchase = parseISO(request.purchaseDate)
 
-        let { user_id, category_id, credit_config_id, description, creditInstallments, totalValue } = this.req
+        let { id_category, id_credit_config, id_user, description, creditInstallments, totalValue } = this.req
         
         let installmentAmount = totalValue / creditInstallments
         
@@ -33,9 +33,9 @@ export class GenerateCreditInstallments {
         
         for(let partialAmount = 0; partialAmount < creditInstallments; partialAmount++){
             let creditInstallment = this.creditRepository.createEntity({
-                id_user: user_id,
-                id_category: category_id,
-                id_credit_config: credit_config_id,
+                id_user: id_user,
+                id_category: id_category,
+                id_credit_config: id_credit_config,
                 description:description,
                 installment_value: installmentAmount,
                 dt_due: this.calculateDateDue(partialAmount)
@@ -49,8 +49,8 @@ export class GenerateCreditInstallments {
 
     private async verifyCreditLimit(value: number): Promise<void> {
 
-        this.creditConfig = await this.creditConfigRepository.findOneByUserId(this.req.credit_config_id, this.req.user_id)
-        const sumValuesRegistered = await this.creditRepository.sumCreditValues(this.req.user_id, this.req.credit_config_id)
+        this.creditConfig = await this.creditConfigRepository.findOneByUserId(this.req.id_credit_config, this.req.id_user)
+        const sumValuesRegistered = await this.creditRepository.sumCreditValues(this.req.id_user, this.req.id_credit_config)
 
         const totalLimit = sumValuesRegistered + value > this.creditConfig.limit_credit;
 

@@ -20,7 +20,7 @@ export class GetDebitsDTO {
 }
 
 export class CreteDebitDTO {
-    category_id: string
+    id_category: number
     description: string
     dt_purchase: string
     user_id: string

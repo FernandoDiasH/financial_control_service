@@ -10,9 +10,9 @@ export interface CreateCreditPropsDTO {
 
 
 export class CreateCreditDTO {
-    user_id: string;
-    credit_config_id: number;
-    category_id: number;
+    id_user: string;
+    id_credit_config: number;
+    id_category: number;
     description: string;
     purchaseDate: string;
     creditInstallments: number;

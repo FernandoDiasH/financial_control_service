@@ -29,11 +29,11 @@ export class Credit extends Model {
     credit_status?: Date | null;
 
     @ManyToOne(()=> Category, category => category.credits)
-    @JoinColumn({name:"category_id"})
+    @JoinColumn({name:"id_category"})
     category:Category
 
     @ManyToOne(() => CreditConfig, creditConfig => creditConfig.credit)
-    @JoinColumn({name:"credit_config_id"})
+    @JoinColumn({name:"id_credit_config"})
     creditConfig:CreditConfig
 }
 
