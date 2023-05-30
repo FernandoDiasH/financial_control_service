@@ -1,9 +1,9 @@
 import { Debit } from "@app/entities/Debit";
 import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository";
-import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, NotFoundException, Param, Post, Put } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { parseISO, setDate } from "date-fns";
-import { CreteDebitDTO, GetDebitsDTO } from "./dtos/DebitDTO";
+import { CreteDebitDTO, GetDebitsDTO, UpdateDebitDto } from "./dtos/DebitDTO";
 import { DebitRepository } from "./debit.repository";
 
 @Controller('/debit')
@@ -36,7 +36,16 @@ export class DebitController {
     }
 
     @Put()
-    async update(){
+    async update(@Body() req: UpdateDebitDto){
 
+        let debit = await this.debitRepository.repository.findOneBy({id:req.id})
+        
+        if(!debit){
+            throw new NotFoundException("Debit not found.")
+        }
+
+        Object.assign(debit, req)
+
+        return await this.debitRepository.repository.save(debit)
     }
 }

@@ -26,3 +26,12 @@ export class CreteDebitDTO {
     user_id: string
     value: number
 }
+
+export class UpdateDebitDto{
+    id:number
+    id_category: number
+    description: string
+    dt_purchase: string
+    user_id: string
+    value: number
+}

@@ -15,10 +15,10 @@ export abstract class BaseRepository<T extends Model>{
         return this.repository.save(entity)
     }
 
-    findManyByUserId(userId:string) {
+    findManyByUserId(id_user:string) {
         return this.repository
             .createQueryBuilder()
-            .where("user_id = :userId", {userId:userId})
+            .where("id_user = :id_user", {id_user:id_user})
             .getMany()
     }
 
