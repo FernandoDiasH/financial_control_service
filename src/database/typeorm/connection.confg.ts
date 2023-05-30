@@ -12,7 +12,7 @@ export const connectionDatabaseConfig:DataSourceOptions = {
     username: "root" ,
     password: "secret",
     database: "finance_service",
-    logging:true,
+    logging:false,
     entities:[
         Category,
         CreditConfig,

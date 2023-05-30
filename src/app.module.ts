@@ -7,6 +7,7 @@ import { CreditConfigModule } from './modules/creadiConfig/creditConfig.module';
 import { DebitModule } from './modules/debit/debit.module';
 import { connectionDatabaseConfig } from './database/typeorm/connection.confg';
 import { CreditModule } from './modules/credit/credit.module';
+import { analyzeModule } from './modules/analize/analyze.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { CreditModule } from './modules/credit/credit.module';
     CategoryModule,
     CreditConfigModule,
     DebitModule,
-    CreditModule
+    CreditModule,
+    analyzeModule
     // DatabaseModule
   ],
   controllers: [AppController],
