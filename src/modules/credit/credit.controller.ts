@@ -1,9 +1,9 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { randomUUID } from "crypto";
 import { formatISO, parseISO, setDate } from "date-fns";
 import { CreditRepository } from "./credit.repository";
-import { CreateCreditDTO, FindCreditsDTO, PayCreditDto } from "./dtos/creditDTO";
+import { CreateCreditDto, GetCreditDto, PayCreditDto } from "./dtos/creditDTO";
 import { GenerateCreditInstallments } from "./services/generateCreditInstallments";
 import { PayCredit } from "./services/PayCredit";
 
@@ -19,36 +19,35 @@ export class CreditController {
     ) { }
 
     @Post()
-    async create(@Body() req: CreateCreditDTO) {
+    async create(@Body() req: CreateCreditDto) {
         return await this.generateCreditInstallments.execute(req) 
     }
 
-    @Get('find-all/:userId')
-    async findAll(@Param() req) {
+    @Get(':id')
+    async findAll(@Param() req:GetCreditDto) {
     
-        let credits = await this.creditRepository.repository.find({
+        let [ credit ] = await this.creditRepository.repository.find({
             relations:{
                 category:true,
                 creditConfig:true
             },
             where:{
-                id_user:req.userId
+                id:Number(req.id)
             }
         })
-        return credits
+        return credit
         
         // return CreditViewModel.toHTTP({ credits, categories, creditConfig })
     }
 
-    @Post('months')
-    async getAllDistinctMonths(@Body() req) {
-        // return await this.findDistinctMoths.execute(req.user_id)
+    @Put('pay/:id')
+    async payCredits(@Param() req: PayCreditDto) {
+        return await this.payCredit.execute(req.id)
     }
 
-    @Post('pay')
-    async payCredits(@Body() req: PayCreditDto) {
-        console.log(req);
-        
-       return await this.payCredit.execute(req.user_id, req.credit_id)
-    }
+    // @Post('months')
+    // async getAllDistinctMonths(@Body() req) {
+    //     // return await this.findDistinctMoths.execute(req.user_id)
+    // }
+
 }

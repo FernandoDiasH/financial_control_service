@@ -3,22 +3,22 @@ import { randomUUID } from "crypto";
 import { addMonths, parseISO } from "date-fns";
 import { CreditConfigRepository } from "src/modules/creadiConfig/creditConfig.repository";
 import { CreditConfig } from "src/modules/creadiConfig/entity/creditConfig.entity";
-import { CreateCreditDTO } from "src/modules/credit/dtos/creditDTO";
 import { CreditRepository } from "../credit.repository";
+import { CreateCreditDto } from "../dtos/creditDTO";
 
 @Injectable()
 export class GenerateCreditInstallments {
     private creditConfig: CreditConfig;
     private date_purchase: Date;
 
-    private req: CreateCreditDTO
+    private req: CreateCreditDto
 
     constructor(
         private creditConfigRepository: CreditConfigRepository,
         private creditRepository: CreditRepository
     ) { }
 
-    async execute(request: CreateCreditDTO ) {
+    async execute(request: CreateCreditDto ) {
         
         this.req = request
         this.date_purchase = parseISO(request.purchaseDate)

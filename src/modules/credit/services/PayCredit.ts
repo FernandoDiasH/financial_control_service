@@ -5,8 +5,8 @@ import { CreditRepository } from "../credit.repository";
 export class PayCredit {
     constructor(private creditRepository: CreditRepository) { }
 
-    async execute(userId:string, credit_id: number) {
-        const credit = await this.creditRepository.findOneByUserId(credit_id, userId);
+    async execute(id: number) {
+        const credit = await this.creditRepository.repository.findOneBy({id:id});
      
         if(!credit){
             throw new NotFoundException("Credit not found")
