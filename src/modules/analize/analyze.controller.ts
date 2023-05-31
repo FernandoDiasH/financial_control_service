@@ -45,65 +45,66 @@ export class AnalyzeController {
         let initialDate = setDate(dateNow, 1)
         let finalDate = getDate(dateNow) == 31 ? setDate(dateNow, 31 ) : setDate(dateNow, 30)
         
-        let debits = await this.debitRepository.repository.find({
-            where:{
-                id_user:req.userId,
-                dt_purchase: Between(initialDate, finalDate)
-            },
-            order:{
-                dt_purchase:"ASC"
-            }
-        }) 
-
         let totalCreditToMonth = await this.creditRepository.repository.sum("installment_value", {
             id_user: req.userId,
             dt_due:  Between(initialDate, finalDate),
             credit_status: IsNull()
         })
 
-        let credits = await this.creditRepository.repository.find({
-            where:{
-                id_user:req.userId,
-                dt_due: Between(initialDate, finalDate)
-            }
-        })
-
-        let sumOfCategory  = await this.categoryRepository.repository.find({
+        let debits = await this.debitRepository.repository.find({
             relations:{
-                credits:true,
-                debits:true,
+                category:true
             },
             where:{
                 id_user:req.userId,
-                // credits:{
-                //     dt_due: Between(initialDate, finalDate)
-                // },
-                debits:{
-                    dt_purchase:Between(initialDate, finalDate)
+                dt_purchase: Between(initialDate, finalDate),
+                category:{
+                    type:"Saida"
+                }
+            },
+            order:{
+                dt_purchase:"ASC"
+            },
+        }) 
+
+        let credits = await this.creditRepository.repository.find({
+            relations:{
+                category:true
+            },
+            where:{
+                id_user:req.userId,
+                dt_due: Between(initialDate, finalDate),
+                category:{
+                    type:"Saida"
                 }
             }
-
         })
 
-        let result = sumOfCategory.reduce((acc, category) => {
-            let debitValue:number = category.debits.reduce((acc,  debit ) =>  acc  + debit.value,  0)
-            let creditValue = category.credits.reduce((acc, credit) => acc + credit.installment_value, 0)
-            acc[category.description] = debitValue + creditValue
-
+        let sumOfCategory = debits.reduce((acc, debit) => {
+            if(!acc[debit.category.description]){
+                acc[debit.category.description] = 0
+            }
+            acc[debit.category.description] += debit.value
             return acc
-        }, {} )
-
-        console.log(sumOfCategory);
-        console.log(result);
+        }, {})
+       
         
-            
+        sumOfCategory = credits.reduce((acc, credit) => {
+            if(!acc[credit.category.description]){
+                acc[credit.category.description] = 0
+            }
+            acc[credit.category.description] += credit.installment_value
+            return acc
+        }, sumOfCategory)
+
+
         return {
+            balance: entries - outings,
             entries: entries,
             outings: outings,
             creditValue: totalCreditToMonth ? totalCreditToMonth : 0,
             months: months.map(month => month.dt_purchase),
-            debits: debits,
-            credits: credits
+            sumOfCategory: sumOfCategory
         }
     }
 }
