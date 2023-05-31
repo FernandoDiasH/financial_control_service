@@ -1,6 +1,6 @@
 import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository"
 import { Injectable } from "@nestjs/common";
-import { GetDebitsPropsDTO } from "../dtos/DebitDTO";
+import { GetDebitsPropsDto } from "../dtos/DebitDTO";
 
 @Injectable()
 export class GetDebits {
@@ -8,7 +8,7 @@ export class GetDebits {
         private debitRepository: DebitAbstractRepository
     ) { }
 
-    async execute(request: GetDebitsPropsDTO) {
+    async execute(request: GetDebitsPropsDto) {
         let { user_id, start_dt, end_dt } = request
 
         const debits = await this.debitRepository.getAll(user_id, start_dt, end_dt)

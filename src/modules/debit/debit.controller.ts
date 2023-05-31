@@ -1,7 +1,7 @@
 import { Body, Controller, Get, NotFoundException, Param, Post, Put } from "@nestjs/common";
-import { CreteDebitDTO, UpdateDebitDto } from "./dtos/DebitDTO";
 import { DebitRepository } from "./debit.repository";
 import { ApiTags } from "@nestjs/swagger";
+import { CreteDebitDto, GetDebitDto, UpdateDebitDto } from "./dtos/DebitDTO";
 @ApiTags('Debit')
 @Controller('/debit')
 export class DebitController {
@@ -12,24 +12,24 @@ export class DebitController {
     ) { }
 
     @Post()
-    async create(@Body() req: CreteDebitDTO) {
-        let debit = this.debitRepository.createEntity({ id_user: req.user_id, ...req})
+    async create(@Body() req: CreteDebitDto) {
+        let debit = this.debitRepository.createEntity({ id_user: req.id_user, ...req})
         return await this.debitRepository.saveEntity([debit])
     }
 
-    @Get('/all/:userId')
-    async findAllDebits(@Param() req) {
+    @Get('/:id')
+    async findAllDebits(@Param() req:GetDebitDto) {
 
-        let debits = await this.debitRepository.findManyByUserId(req.userId)
-
-        return debits.map(debit => {
-            return {
-                id: debit.id,
-                description: debit.description,
-                data: debit.dt_purchase,
-                valor: debit.value
-            }
-        })
+        let debits = await this.debitRepository.repository.findOneBy({id:req.id})
+        return debits
+        // return debits.map(debit => {
+        //     return {
+        //         id: debit.id,
+        //         description: debit.description,
+        //         data: debit.dt_purchase,
+        //         valor: debit.value
+        //     }
+        // })
     }
 
     @Put()

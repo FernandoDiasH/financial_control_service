@@ -77,7 +77,7 @@ export class UpdateCreditConfigDto{
     @ApiProperty({default: 'luz'})
     description: string;
 
-    @IsDate()
+    @IsDateString()
     @IsNotEmpty()
     @ApiProperty({default: '2023-05-31'})
     dt_due: Date;
