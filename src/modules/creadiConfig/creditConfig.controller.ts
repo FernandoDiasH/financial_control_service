@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Injectable, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Injectable, NotFoundException, Param, Post, Put } from "@nestjs/common";
 import { randomUUID } from "crypto";
-import { CreateCreditConfigDTO } from "./dtos/CreditConfigDTO";
+import { CreateCreditConfigDto, GetCreditConfigDto, UpdateCreditConfigDto } from "./dtos/CreditConfigDTO";
 import { CreditConfigRepository } from "./creditConfig.repository";
 import { ApiTags } from "@nestjs/swagger";
 
@@ -14,26 +14,30 @@ export class CreditConfigController {
     ) { }
 
     @Post()
-    async createCreditConfig(@Body() req: CreateCreditConfigDTO) {
+    async createCreditConfig(@Body() req: CreateCreditConfigDto) {
     
         let creditConfig = this.creditConfigRepository.createEntity({id_user:req.user_id,  ...req})
-
         return await this.creditConfigRepository.saveEntity([creditConfig])
     }
 
-    @Get('find-all/:userId')
-    async FindAllCreditConfig(@Param() req) {
-        let creditConfigs = await this.creditConfigRepository.findManyByUserId(req.userId)
+    @Put()
+    async update(@Body() req: UpdateCreditConfigDto){
 
-        return creditConfigs.map(creditConfig => {
-            return {
-                id: creditConfig.id,
-                user_id: creditConfig.id_user,
-                descricao: creditConfig.description,
-                vencimento: creditConfig.day_due,
-                fechamento: creditConfig.day_credit_closing,
-                limit: creditConfig.limit_credit
-            }
-        })
+
+        let creditConfig = await this.creditConfigRepository.repository.findOneBy({id: req.id})
+
+        if(!creditConfig){
+            throw new NotFoundException('Credit Config not found')
+        }
+
+        Object.assign(creditConfig, req)
+
+        return await this.creditConfigRepository.repository.save(creditConfig)
+    }
+
+    @Get(':id')
+    async get(@Param() req:GetCreditConfigDto) {
+        let creditConfigs = await this.creditConfigRepository.repository.findOneBy({id:req.id})
+        return creditConfigs
     }
 }
