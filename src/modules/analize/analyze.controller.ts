@@ -1,4 +1,5 @@
 import { Controller, Get, Param } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { formatISO, getDate, getDay, parseISO, setDate, setDay } from "date-fns";
 import { Between, IsNull } from "typeorm";
 import { CategoryRepository } from "../category/category.repository";
@@ -6,7 +7,7 @@ import { CreditRepository } from "../credit/credit.repository";
 import { DebitRepository } from "../debit/debit.repository";
 import { Debit } from "../debit/entity/debit.entity";
 
-
+@ApiTags('Analyze')
 @Controller('analyze')
 export class AnalyzeController {
 

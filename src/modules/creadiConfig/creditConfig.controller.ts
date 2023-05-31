@@ -2,9 +2,10 @@ import { Body, Controller, Get, Injectable, Param, Post } from "@nestjs/common";
 import { randomUUID } from "crypto";
 import { CreateCreditConfigDTO } from "./dtos/CreditConfigDTO";
 import { CreditConfigRepository } from "./creditConfig.repository";
+import { ApiTags } from "@nestjs/swagger";
 
 
-
+@ApiTags('Credit Config')
 @Controller('credit-config')
 export class CreditConfigController {
 

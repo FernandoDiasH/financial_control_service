@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { randomUUID } from "crypto";
 import { formatISO, parseISO, setDate } from "date-fns";
 import { CreditRepository } from "./credit.repository";
@@ -6,7 +7,7 @@ import { CreateCreditDTO, FindCreditsDTO, PayCreditDto } from "./dtos/creditDTO"
 import { GenerateCreditInstallments } from "./services/generateCreditInstallments";
 import { PayCredit } from "./services/PayCredit";
 
-
+@ApiTags('Credit')
 @Controller('credit')
 export class CreditController {
     constructor(

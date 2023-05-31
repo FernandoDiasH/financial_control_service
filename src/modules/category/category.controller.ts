@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
-import { CreateCategoryDTO } from "./dtos/categoryDTO";
+import { Body, Controller, Get, NotFoundException, Param, Post, Put } from "@nestjs/common";
+import { CreateCategoryDTO, GetCategoryDto, UpdateCategoryDto } from "./dtos/categoryDTO";
 import { CategoryRepository } from "./category.repository";
 import { randomUUID } from "node:crypto";
-
+import { ApiTags } from "@nestjs/swagger";
+@ApiTags('Category')
 @Controller('/category')
 export class CategoryController {
 
@@ -13,22 +14,38 @@ export class CategoryController {
     @Post()
     async create(@Body() req: CreateCategoryDTO) {
     
-        let category = this.categoryRepository.createEntity({ id_user: req.user_id, ...req})  
+        let category = this.categoryRepository.createEntity({ id_user: req.id_user, ...req})  
         return await this.categoryRepository.saveEntity([category])
 
     }
 
-    @Get('find/:userId')
-    async findAllCategory(@Param() param) {
+    @Get('/:id')
+    async findAllCategory(@Param() param:GetCategoryDto) {
+        
+        let category = await this.categoryRepository.repository.findOneBy({id: param.id})
+        return category
 
-        let categories = await this.categoryRepository.findManyByUserId(param.userId)
-
-        return categories.map(category => {
-            return {
-                id: category.id,
-                description: category.description,
-                type: category.type
-            }
-        })
+        // return categories.map(category => {
+        //     return {
+        //         id: category.id,
+        //         description: category.description,
+        //         type: category.type
+        //     }
+        // })
     }
+
+    @Put()
+    async update(@Body() req: UpdateCategoryDto){
+        let category = await this.categoryRepository.repository.findOneBy({id: Number(req.id)})
+
+        if(!category){
+            throw new NotFoundException('Category not found')
+        }
+
+        category.description = req.description
+        category.type = req.type
+
+        return await this.categoryRepository.repository.save(category)
+
+    }   
 }

@@ -1,11 +1,8 @@
-import { Debit } from "@app/entities/Debit";
-import { DebitAbstractRepository } from "@app/repositories/debitAbstractRepository";
 import { Body, Controller, Get, NotFoundException, Param, Post, Put } from "@nestjs/common";
-import { randomUUID } from "crypto";
-import { parseISO, setDate } from "date-fns";
-import { CreteDebitDTO, GetDebitsDTO, UpdateDebitDto } from "./dtos/DebitDTO";
+import { CreteDebitDTO, UpdateDebitDto } from "./dtos/DebitDTO";
 import { DebitRepository } from "./debit.repository";
-
+import { ApiTags } from "@nestjs/swagger";
+@ApiTags('Debit')
 @Controller('/debit')
 export class DebitController {
 
